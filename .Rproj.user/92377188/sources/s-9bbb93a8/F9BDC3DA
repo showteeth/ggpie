@@ -5,14 +5,14 @@
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "0",
+    "hash" : "1799034359",
     "id" : "F9BDC3DA",
-    "lastKnownWriteTime" : 1653487446,
-    "last_content_update" : 1653491459407,
+    "lastKnownWriteTime" : 1653487504,
+    "last_content_update" : 1653491517620,
     "path" : "~/data/projects/ggpie/README.Rmd",
     "project_path" : "README.Rmd",
     "properties" : {
-        "cursorPosition" : "46,0",
+        "cursorPosition" : "45,0",
         "docOutlineVisible" : "1",
         "scrollLine" : "28"
     },
