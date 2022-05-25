@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1653206460690.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "F9BDC3DA",
+    "lastKnownWriteTime" : 1653484495,
+    "last_content_update" : 1653488508380,
+    "path" : "~/data/projects/ggpie/README.Rmd",
+    "project_path" : "README.Rmd",
+    "properties" : {
+        "cursorPosition" : "20,70",
+        "docOutlineVisible" : "1",
+        "scrollLine" : "15"
+    },
+    "relative_order" : 6,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

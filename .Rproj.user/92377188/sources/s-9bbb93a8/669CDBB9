@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1652849902155.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "669CDBB9",
+    "lastKnownWriteTime" : 1653203674,
+    "last_content_update" : 1653207694719,
+    "path" : "~/data/projects/ggpie/R/ggpie.R",
+    "project_path" : "R/ggpie.R",
+    "properties" : {
+        "cursorPosition" : "28,3",
+        "scrollLine" : "0",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

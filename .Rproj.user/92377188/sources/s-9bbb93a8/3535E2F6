@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1653193607121.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "3535E2F6",
+    "lastKnownWriteTime" : 1653484487,
+    "last_content_update" : 1653488501212,
+    "path" : "~/data/projects/ggpie/vignettes/ggpie.Rmd",
+    "project_path" : "vignettes/ggpie.Rmd",
+    "properties" : {
+        "cursorPosition" : "18,10",
+        "docOutlineVisible" : "1",
+        "scrollLine" : "11"
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

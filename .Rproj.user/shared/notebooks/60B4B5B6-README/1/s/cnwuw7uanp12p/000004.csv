@@ -1,0 +1,7 @@
+"0","# pie plot"
+"0","p1=ggrosepie(diamonds, group_key = ""color"", count_type = ""full"", label_info = ""all"","
+"0","             donut_frac=NULL)"
+"0","# donut plot"
+"0","p2=ggrosepie(diamonds, group_key = ""color"", count_type = ""full"", label_info = ""all"","
+"0","             donut_frac=0.3,donut_label_size=3)"
+"0","cowplot::plot_grid(p1,p2)"

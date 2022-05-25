@@ -1,0 +1,24 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1653122903184.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "4AE97397",
+    "lastKnownWriteTime" : 1653213300,
+    "last_content_update" : 1653213300,
+    "path" : "~/data/projects/ggpie/R/ggnestedpie.R",
+    "project_path" : "R/ggnestedpie.R",
+    "properties" : {
+        "cursorPosition" : "205,62",
+        "docOutlineVisible" : "1",
+        "scrollLine" : "0",
+        "tempName" : "Untitled2"
+    },
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
