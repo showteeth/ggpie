@@ -1,6 +1,6 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-# ggpie - A ggplot2 extension to create pie and donut plot
+# ggpie - A ggplot2 extension to create pie, donut and rose pie plot
 
 <img src = "man/figures/ggpie_hex.png" align = "right" width = "200"/>
 
