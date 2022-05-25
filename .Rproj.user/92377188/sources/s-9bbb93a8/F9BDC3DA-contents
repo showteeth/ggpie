@@ -28,6 +28,7 @@ knitr::opts_chunk$set(
 
 <hr />
 
+
 ## Installation
 You can install the released version of `ggpie` from [CRAN](https://CRAN.R-project.org) with:
 
@@ -42,6 +43,7 @@ remotes::install_github("showteeth/ggpie")
 ```
 
 <hr />
+
 
 ## Usage
 ### Preapre data

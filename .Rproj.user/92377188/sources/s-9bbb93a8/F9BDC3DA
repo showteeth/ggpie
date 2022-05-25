@@ -7,14 +7,14 @@
     "folds" : "",
     "hash" : "0",
     "id" : "F9BDC3DA",
-    "lastKnownWriteTime" : 1653484495,
-    "last_content_update" : 1653488508380,
+    "lastKnownWriteTime" : 1653487446,
+    "last_content_update" : 1653491459407,
     "path" : "~/data/projects/ggpie/README.Rmd",
     "project_path" : "README.Rmd",
     "properties" : {
-        "cursorPosition" : "20,70",
+        "cursorPosition" : "46,0",
         "docOutlineVisible" : "1",
-        "scrollLine" : "15"
+        "scrollLine" : "28"
     },
     "relative_order" : 6,
     "source_on_save" : false,
