@@ -14,7 +14,7 @@ ggrosepie(
   sort = TRUE,
   show_tick = TRUE,
   tick_break = NULL,
-  show_label = T,
+  show_label = TRUE,
   label_sep = "|",
   label_gap = 0.05,
   label_size = 4,

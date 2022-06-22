@@ -14,7 +14,7 @@ ggnestedpie(
   inner_thick = 1,
   outer_thick = 1,
   inner_fill_color = NULL,
-  inner_label = T,
+  inner_label = TRUE,
   inner_label_info = c("count", "ratio", "all"),
   inner_label_color = "black",
   inner_label_split = "[[:space:]]+",

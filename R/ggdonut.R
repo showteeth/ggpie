@@ -115,7 +115,7 @@ ggdonut <- function(data, group_key = NULL, count_type = c("count", "full"), fil
         ) +
         xlim(0, NA) +
         geom_text(data,
-          mapping = aes(x = r1 + label_gap, y = CumSum, label = label, angle = angle, colour = group), show.legend = F,
+          mapping = aes(x = r1 + label_gap, y = CumSum, label = label, angle = angle, colour = group), show.legend = FALSE,
           hjust = ifelse(data$preangle > 180, 0, 1), size = label_size
         ) +
         coord_polar(theta = "y", start = 0, clip = "off") +
@@ -131,7 +131,7 @@ ggdonut <- function(data, group_key = NULL, count_type = c("count", "full"), fil
         xlim(0, NA) +
         geom_text(data,
           mapping = aes(x = (r0 + r1) / 2, y = CumSum, label = label, angle = angle, colour = group),
-          show.legend = F, size = label_size
+          show.legend = FALSE, size = label_size
         ) +
         coord_polar(theta = "y", start = 0, clip = "off") +
         theme_void() +
@@ -153,7 +153,7 @@ ggdonut <- function(data, group_key = NULL, count_type = c("count", "full"), fil
         xlim(0, NA) +
         geom_text_repel(
           data = data,
-          mapping = aes(label = label, y = CumFreq, x = after_stat(r1), colour = group), show.legend = F,
+          mapping = aes(label = label, y = CumFreq, x = after_stat(r1), colour = group), show.legend = FALSE,
           size = label_size, point.padding = NA, max.overlaps = Inf, nudge_x = 1, nudge_y = 1,
           segment.curvature = -0.2, segment.ncp = 10, segment.angle = 20
         ) +
@@ -172,7 +172,7 @@ ggdonut <- function(data, group_key = NULL, count_type = c("count", "full"), fil
           geom_text_repel(
             data = data,
             mapping = aes(x = (r0 + r1) / 2, y = CumFreq, label = label, colour = group),
-            show.legend = F, size = label_size
+            show.legend = FALSE, size = label_size
           ) +
           coord_polar(theta = "y", start = 0, clip = "off") +
           theme_void() +
@@ -187,14 +187,14 @@ ggdonut <- function(data, group_key = NULL, count_type = c("count", "full"), fil
           xlim(0, NA) +
           geom_text_repel(
             data = data[data$Freq < labal_threshold, ],
-            aes(label = label, y = CumFreq, x = after_stat(r1), colour = group), show.legend = F,
+            aes(label = label, y = CumFreq, x = after_stat(r1), colour = group), show.legend = FALSE,
             size = label_size, point.padding = NA, max.overlaps = Inf, nudge_x = 1, nudge_y = 1,
             segment.curvature = -0.2, segment.ncp = 10, segment.angle = 20
           ) +
           geom_text(
             data = data[data$Freq >= labal_threshold, ],
             aes(y = CumFreq, x = (r0 + r1) / 2, label = label, colour = group),
-            show.legend = F, size = label_size
+            show.legend = FALSE, size = label_size
           ) +
           coord_polar(theta = "y", start = 0, clip = "off") +
           theme_void() +

@@ -68,7 +68,7 @@
 #'   tick_break = c(3000, 5000, 7000, 11000), donut_frac = 0.3, donut_label_size = 3
 #' )
 ggrosepie <- function(data, group_key = NULL, count_type = c("count", "full"), fill_color = NULL, label_info = c("count", "ratio", "all"),
-                      label_color = "black", sort = TRUE, show_tick = TRUE, tick_break = NULL, show_label = T, label_sep = "|", label_gap = 0.05,
+                      label_color = "black", sort = TRUE, show_tick = TRUE, tick_break = NULL, show_label = TRUE, label_sep = "|", label_gap = 0.05,
                       label_size = 4, donut_frac = 0.1, donut_label = TRUE, donut_label_size = 4, donut_label_color = "red", border_color = "black") {
   # check parameters
   count_type <- match.arg(arg = count_type)
@@ -182,7 +182,7 @@ ggrosepie <- function(data, group_key = NULL, count_type = c("count", "full"), f
               x = group, y = Sum, label = label, angle = angle,
               hjust = hjust
             ), colour = label_color,
-            show.legend = F, size = label_size
+            show.legend = FALSE, size = label_size
           )
       }
     } else {
@@ -255,7 +255,7 @@ ggrosepie <- function(data, group_key = NULL, count_type = c("count", "full"), f
               x = group, y = Sum, label = label, angle = angle,
               hjust = hjust
             ), colour = label_color,
-            show.legend = F, size = label_size
+            show.legend = FALSE, size = label_size
           )
       }
     }
@@ -394,7 +394,7 @@ ggrosepie <- function(data, group_key = NULL, count_type = c("count", "full"), f
                 x = group, y = Sum, label = label, angle = angle,
                 hjust = hjust
               ), colour = label_color,
-              show.legend = F, size = label_size
+              show.legend = FALSE, size = label_size
             )
         }
       } else {
@@ -466,7 +466,7 @@ ggrosepie <- function(data, group_key = NULL, count_type = c("count", "full"), f
                 x = group, y = Sum, label = label, angle = angle,
                 hjust = hjust
               ), colour = label_color,
-              show.legend = F, size = label_size
+              show.legend = FALSE, size = label_size
             )
         }
       }

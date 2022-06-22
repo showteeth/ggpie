@@ -88,7 +88,7 @@
 #'   outer_label_info = "all", outer_labal_threshold = 10
 #' )
 ggnestedpie <- function(data, group_key = NULL, count_type = c("count", "full"), r0 = 0.5, r1 = 1.5, r2 = 2.5, inner_thick = 1, outer_thick = 1,
-                        inner_fill_color = NULL, inner_label = T, inner_label_info = c("count", "ratio", "all"), inner_label_color = "black",
+                        inner_fill_color = NULL, inner_label = TRUE, inner_label_info = c("count", "ratio", "all"), inner_label_color = "black",
                         inner_label_split = "[[:space:]]+", inner_labal_threshold = NULL, inner_label_size = 4,
                         outer_fill_color = NULL, outer_label_type = c("circle", "horizon", "none"), outer_label_pos = c("in", "out"),
                         outer_label_info = c("count", "ratio", "all"), outer_label_split = "[[:space:]]+", outer_label_color = "black",
@@ -148,7 +148,7 @@ ggnestedpie <- function(data, group_key = NULL, count_type = c("count", "full"),
     stop("The length of fill color is greater than 1 and not equal to group number.")
   }
   names(inner_fill_color) <- all_subgroups
-  inner_fill_full_df <- merge(sub_data, as.data.frame(inner_fill_color, stringsAsFactors = F), by.x = "subgroup", by.y = 0)
+  inner_fill_full_df <- merge(sub_data, as.data.frame(inner_fill_color, stringsAsFactors = FALSE), by.x = "subgroup", by.y = 0)
   inner_fill_full <- inner_fill_full_df$inner_fill_color
   names(inner_fill_full) <- as.character(inner_fill_full_df$group)
   sub_data$group <- factor(sub_data$group, levels = sub_data$group)
@@ -190,7 +190,7 @@ ggnestedpie <- function(data, group_key = NULL, count_type = c("count", "full"),
         stop("The length of label color is greater than 1 and not equal to group number.")
       } else {
         names(inner_label_color) <- all_subgroups
-        inner_label_full_df <- merge(sub_data, as.data.frame(inner_label_color, stringsAsFactors = F), by.x = "subgroup", by.y = 0)
+        inner_label_full_df <- merge(sub_data, as.data.frame(inner_label_color, stringsAsFactors = FALSE), by.x = "subgroup", by.y = 0)
         inner_label_full <- inner_label_full_df$inner_label_color
         names(inner_label_full) <- inner_label_full_df$group
       }
@@ -206,7 +206,7 @@ ggnestedpie <- function(data, group_key = NULL, count_type = c("count", "full"),
       geom_bar(sub_data, mapping = aes(x = (r0 + r1) / 2, y = count, fill = group), colour = border_color, stat = "identity", width = inner_width) +
       geom_text(
         data = inner_label_data,
-        mapping = aes(x = (r0 + r1) / 2, y = count, label = label, angle = angle, color = group), show.legend = F,
+        mapping = aes(x = (r0 + r1) / 2, y = count, label = label, angle = angle, color = group), show.legend = FALSE,
         position = position_stack(vjust = 0.5),
         size = inner_label_size
       ) +
@@ -288,7 +288,7 @@ ggnestedpie <- function(data, group_key = NULL, count_type = c("count", "full"),
             width = outer_width, stat = "identity", color = border_color
           ) +
           geom_text(main_data,
-            mapping = aes(x = r2 + outer_label_gap, y = CumSum, label = label, angle = angle, colour = group), show.legend = F,
+            mapping = aes(x = r2 + outer_label_gap, y = CumSum, label = label, angle = angle, colour = group), show.legend = FALSE,
             hjust = ifelse(main_data$preangle > 180, 0, 1), size = outer_label_size
           ) +
           coord_polar(theta = "y", start = 0, clip = "off") +
@@ -306,7 +306,7 @@ ggnestedpie <- function(data, group_key = NULL, count_type = c("count", "full"),
           ) +
           geom_text(main_data,
             mapping = aes(x = (r2 + r1) / 2, y = CumSum, label = label, angle = angle, colour = group),
-            show.legend = F, size = outer_label_size
+            show.legend = FALSE, size = outer_label_size
           ) +
           coord_polar(theta = "y", start = 0, clip = "off") +
           theme_void() +
@@ -328,7 +328,7 @@ ggnestedpie <- function(data, group_key = NULL, count_type = c("count", "full"),
           ) +
           geom_text_repel(
             data = main_data,
-            mapping = aes(label = label, y = CumSum, x = after_stat(r2), colour = group), show.legend = F,
+            mapping = aes(label = label, y = CumSum, x = after_stat(r2), colour = group), show.legend = FALSE,
             point.padding = NA, max.overlaps = Inf, nudge_x = 1, nudge_y = 1,
             segment.curvature = -0.2, segment.ncp = 10, segment.angle = 20, size = outer_label_size
           ) +
@@ -349,7 +349,7 @@ ggnestedpie <- function(data, group_key = NULL, count_type = c("count", "full"),
             geom_text_repel(
               data = main_data,
               mapping = aes(x = (r2 + r1) / 2, y = CumSum, label = label, colour = group),
-              show.legend = F, size = outer_label_size
+              show.legend = FALSE, size = outer_label_size
             ) +
             coord_polar(theta = "y", start = 0, clip = "off") +
             theme_void() +
@@ -366,14 +366,14 @@ ggnestedpie <- function(data, group_key = NULL, count_type = c("count", "full"),
             ) +
             geom_text_repel(
               data = main_data[main_data$count * 100 / sum(main_data$count) < outer_labal_threshold, ],
-              aes(label = label, y = CumSum, x = after_stat(r2), colour = group), show.legend = F,
+              aes(label = label, y = CumSum, x = after_stat(r2), colour = group), show.legend = FALSE,
               size = outer_label_size, point.padding = NA, max.overlaps = Inf, nudge_x = 1, nudge_y = 1,
               segment.curvature = -0.2, segment.ncp = 10, segment.angle = 20
             ) +
             geom_text(
               data = main_data[main_data$count * 100 / sum(main_data$count) >= outer_labal_threshold, ],
               aes(y = CumSum, x = (r2 + r1) / 2, label = label, colour = group),
-              show.legend = F, size = outer_label_size
+              show.legend = FALSE, size = outer_label_size
             ) +
             coord_polar(theta = "y", start = 0, clip = "off") +
             theme_void() +

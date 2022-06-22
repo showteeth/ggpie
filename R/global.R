@@ -18,6 +18,8 @@
   utils::globalVariables("zorder")
   utils::globalVariables("Sum")
   utils::globalVariables("hjust")
+  utils::globalVariables("identity_matrix")
+  utils::globalVariables("vertex")
 
   invisible()
 }

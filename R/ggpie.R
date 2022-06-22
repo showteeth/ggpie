@@ -71,9 +71,9 @@
 #'   label_size = 4, label_pos = "in", labal_threshold = 10
 #' )
 ggpie <- function(data, group_key = NULL, count_type = c("count", "full"), fill_color = NULL, label_info = c("count", "ratio", "all"),
-  label_split = "[[:space:]]+", label_color = "black",
-  label_type = c("circle", "horizon", "none"), label_pos = c("in", "out"), label_gap = 0.05,
-  labal_threshold = NULL, label_size = 4, border_color = "black") {
+                  label_split = "[[:space:]]+", label_color = "black",
+                  label_type = c("circle", "horizon", "none"), label_pos = c("in", "out"), label_gap = 0.05,
+                  labal_threshold = NULL, label_size = 4, border_color = "black") {
   # check parameters
   count_type <- match.arg(arg = count_type)
   label_info <- match.arg(arg = label_info)
@@ -90,15 +90,15 @@ ggpie <- function(data, group_key = NULL, count_type = c("count", "full"), fill_
   label_color <- plot.data[["label_color"]]
 
   # create circle label plot
-  if(label_type == "circle") {
+  if (label_type == "circle") {
     data$preangle <- (cumsum(data$count) - 0.5 * data$count) / sum(data$count) * 360
     data$angle <- data$preangle %% 180 - 90
-    if(label_pos == "out") {
+    if (label_pos == "out") {
       pie_plot <- ggplot(data, aes(x = 1, y = count, fill = group)) +
         geom_bar(width = 1, stat = "identity", color = border_color) +
         geom_text(
           aes(x = 1.5 + label_gap, label = label, angle = angle, colour = group),
-          show.legend = F,
+          show.legend = FALSE,
           position = position_stack(vjust = 0.5), hjust = ifelse(data$preangle > 180, 0, 1),
           size = label_size
         ) +
@@ -106,12 +106,12 @@ ggpie <- function(data, group_key = NULL, count_type = c("count", "full"), fill_
         theme_void() +
         scale_fill_manual(values = fill_color) +
         scale_colour_manual(values = label_color)
-    } else if(label_pos == "in") {
+    } else if (label_pos == "in") {
       pie_plot <- ggplot(data, aes(x = 1, y = count, fill = group)) +
         geom_bar(width = 1, stat = "identity", color = border_color) +
         geom_text(
           aes(label = label, angle = angle, colour = group),
-          show.legend = F,
+          show.legend = FALSE,
           position = position_stack(vjust = 0.5),
           size = label_size
         ) +
@@ -122,15 +122,16 @@ ggpie <- function(data, group_key = NULL, count_type = c("count", "full"), fill_
     }
   }
   # create horizon label plot
-  if(label_type == "horizon") {
-    data <- data %>% dplyr::mutate(Freq = count*100/sum(count)) %>%
-      dplyr::mutate(CumFreq = rev(round(cumsum(rev(Freq)) - rev(Freq/2), 2)))
-    if(label_pos == "out") {
+  if (label_type == "horizon") {
+    data <- data %>%
+      dplyr::mutate(Freq = count * 100 / sum(count)) %>%
+      dplyr::mutate(CumFreq = rev(round(cumsum(rev(Freq)) - rev(Freq / 2), 2)))
+    if (label_pos == "out") {
       pie_plot <- ggplot(data, aes(x = 1, y = Freq, fill = group)) +
         geom_bar(width = 1, stat = "identity", color = border_color) +
         geom_text_repel(
           data = data,
-          aes(label = label, y = CumFreq, x = after_stat(1.5), colour = group), show.legend = F,
+          aes(label = label, y = CumFreq, x = after_stat(1.5), colour = group), show.legend = FALSE,
           point.padding = NA, max.overlaps = Inf, nudge_x = 1, nudge_y = 1,
           segment.curvature = -0.2, segment.ncp = 10, segment.angle = 20
         ) +
@@ -138,13 +139,13 @@ ggpie <- function(data, group_key = NULL, count_type = c("count", "full"), fill_
         theme_void() +
         scale_fill_manual(values = fill_color) +
         scale_colour_manual(values = label_color)
-    } else if(label_pos == "in") {
-      if(is.null(labal_threshold)) {
+    } else if (label_pos == "in") {
+      if (is.null(labal_threshold)) {
         pie_plot <- ggplot(data, aes(x = 1, y = Freq, fill = group)) +
           geom_bar(width = 1, stat = "identity", color = border_color) +
           geom_text_repel(
             data = data,
-            aes(label = label, colour = group), show.legend = F,
+            aes(label = label, colour = group), show.legend = FALSE,
             position = position_stack(vjust = 0.5),
             size = label_size
           ) +
@@ -157,13 +158,13 @@ ggpie <- function(data, group_key = NULL, count_type = c("count", "full"), fill_
           geom_bar(width = 1, stat = "identity", color = border_color) +
           geom_text_repel(
             data = data[data$Freq < labal_threshold, ],
-            aes(label = label, y = CumFreq, x = after_stat(1.5), colour = group), show.legend = F,
+            aes(label = label, y = CumFreq, x = after_stat(1.5), colour = group), show.legend = FALSE,
             size = label_size, point.padding = NA, max.overlaps = Inf, nudge_x = 1, nudge_y = 1,
             segment.curvature = -0.2, segment.ncp = 10, segment.angle = 20
           ) +
           geom_text(
             data = data[data$Freq >= labal_threshold, ],
-            aes(label = label, colour = group), show.legend = F,
+            aes(label = label, colour = group), show.legend = FALSE,
             position = position_stack(vjust = 0.5),
             size = label_size
           ) +
@@ -174,7 +175,7 @@ ggpie <- function(data, group_key = NULL, count_type = c("count", "full"), fill_
       }
     }
   }
-  if(label_type == "none") {
+  if (label_type == "none") {
     pie_plot <- ggplot(data, aes(x = 1, y = count, fill = group)) +
       geom_bar(width = 1, stat = "identity", color = border_color) +
       coord_polar(theta = "y", start = 0, clip = "off") +
