@@ -17,6 +17,12 @@ knitr::opts_chunk$set(
 
 <img src = "man/figures/ggpie_hex.png" align = "right" width = "200"/>
 
+[![CRAN](https://www.r-pkg.org/badges/version/ggpie?color=orange)](https://cran.r-project.org/package=ggpie)
+[![CRAN_download](http://cranlogs.r-pkg.org/badges/grand-total/ggpie?color=blue)](https://cran.r-project.org/package=ggpie)
+![License](https://img.shields.io/badge/license-MIT-green)
+[![CODE_SIZE](https://img.shields.io/github/languages/code-size/showteeth/ggpie.svg)](https://github.com/showteeth/ggpie)
+
+
 ## Introduction
 `ggpie` aims to create **pie (2D and 3D)**, **donut** and **rose pie** plot with the `ggplot2` plotting system which implemented the grammar of graphics. It contains five main functions:
 

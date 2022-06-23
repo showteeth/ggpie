@@ -4,6 +4,8 @@
 
 <img src = "man/figures/ggpie_hex.png" align = "right" width = "200"/>
 
+[![CRAN](https://www.r-pkg.org/badges/version/ggpie?color=orange)](https://cran.r-project.org/package=ggpie) [![CRAN\_download](http://cranlogs.r-pkg.org/badges/grand-total/ggpie?color=blue)](https://cran.r-project.org/package=ggpie) ![License](https://img.shields.io/badge/license-MIT-green) [![CODE\_SIZE](https://img.shields.io/github/languages/code-size/showteeth/ggpie.svg)](https://github.com/showteeth/ggpie)
+
 ## Introduction
 
 `ggpie` aims to create **pie (2D and 3D)**, **donut** and **rose pie** plot with the `ggplot2` plotting system which implemented the grammar of graphics. It contains five main functions:
@@ -15,7 +17,6 @@
 -   `ggrosepie`: Create rose pie plot with single or two group variables.
 
 <hr />
-
 ## Installation
 
 You can install the released version of `ggpie` from [CRAN](https://CRAN.R-project.org) with:
@@ -32,7 +33,6 @@ remotes::install_github("showteeth/ggpie")
 ```
 
 <hr />
-
 ## Usage
 
 ### Preapre data
@@ -61,7 +61,6 @@ str(diamonds)
 ```
 
 <hr />
-
 ### Pie plot
 
 #### no label
@@ -142,7 +141,6 @@ ggpie(data = diamonds, group_key = "cut", count_type = "full",
 <img src="man/figures/README-pie_threashold_horizon_in-1.png" width="100%" />
 
 <hr />
-
 ### Donut plot
 
 #### no label
@@ -239,7 +237,6 @@ ggdonut(data = diamonds, group_key = "cut", count_type = "full",
 <img src="man/figures/README-donut_threashold_horizon_in_no_split-1.png" width="100%" />
 
 <hr />
-
 ### 3D pie plot
 
 ``` r
@@ -267,7 +264,6 @@ cowplot::plot_grid(p1,p2,p3,p4,ncol = 2)
 <img src="man/figures/README-pie3d-1.png" width="100%" />
 
 <hr />
-
 ### Nested pie/donut plot
 
 It is often the case that we have **two categorical variables** and then need to plot for both of them, `ggnestedpie` is designed to deal with this.
@@ -349,7 +345,6 @@ ggnestedpie(data = diamonds, group_key = c("cut", "color"), count_type = "full",
 <img src="man/figures/README-nested_pie_blank_inner_outer-1.png" width="100%" />
 
 <hr />
-
 ### Rose pie/donut plot
 
 #### single variable
@@ -447,7 +442,6 @@ cowplot::plot_grid(p1,p2)
 <img src="man/figures/README-rose_pie_two_with_tick_specific_break-1.png" width="100%" />
 
 <hr />
-
 ## Contributing
 
 Please note that the `ggpie` project is released with a [Contributor Code of Conduct](https://www.contributor-covenant.org/version/1/0/0/code-of-conduct/). By contributing to this project, you agree to abide by its terms.
