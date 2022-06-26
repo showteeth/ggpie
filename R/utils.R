@@ -13,7 +13,16 @@ PrepareData <- function(data, group_key = NULL, count_type = c("count", "full"),
       group_key <- "group"
     }
   }
-  data <- data %>% dplyr::mutate(group = as.character(.data[[group_key]]))
+  ## get group factors
+  if(is.null(levels(data[[group_key]]))){
+    data <- data %>% dplyr::mutate(group = as.character(.data[[group_key]]))
+    data[[group_key]] = factor(data[[group_key]],levels = unique(data[[group_key]]))
+  }else{
+    data.levels = levels(data[[group_key]])
+    data <- data %>% dplyr::mutate(group = as.character(.data[[group_key]]))
+    data[[group_key]] = factor(data[[group_key]],levels = data.levels)
+  }
+
   # stat data
   if (count_type == "full") {
     data <- data %>%

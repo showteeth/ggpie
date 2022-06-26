@@ -9,6 +9,7 @@ Authors@R:
            email = "songyb0519@gmail.com")
 Maintainer: Yabing Song <songyb0519@gmail.com>
 Description: Create pie, donut and rose pie plot with 'ggplot2'. 
+URL: https://github.com/showteeth/ggpie
 License: MIT + file LICENSE
 Encoding: UTF-8
 RoxygenNote: 7.1.1
