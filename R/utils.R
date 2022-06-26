@@ -16,11 +16,11 @@ PrepareData <- function(data, group_key = NULL, count_type = c("count", "full"),
   ## get group factors
   if(is.null(levels(data[[group_key]]))){
     data <- data %>% dplyr::mutate(group = as.character(.data[[group_key]]))
-    data[[group_key]] = factor(data[[group_key]],levels = unique(data[[group_key]]))
+    data$group = factor(data$group,levels = unique(data$group))
   }else{
     data.levels = levels(data[[group_key]])
     data <- data %>% dplyr::mutate(group = as.character(.data[[group_key]]))
-    data[[group_key]] = factor(data[[group_key]],levels = data.levels)
+    data$group = factor(data$group,levels = data.levels)
   }
 
   # stat data
