@@ -4,12 +4,12 @@ citEntry(
   entry    = "Manual",
   title    = "ggpie: Create Pie, Donut and Rose Pie Plot with 'ggplot2'.",
   author   = personList(as.person("Yabing Song")),
-  note  = "R package version 0.2.1",
+  note  = "R package version 0.2.2",
   year     = "2022",
   url      = "https://CRAN.R-project.org/package=ggpie",
   textVersion = paste("Yabing Song (2022).",
                  "ggpie: Create Pie, Donut and Rose Pie Plot with 'ggplot2'.",
-                 "R package version 0.2.1.",
+                 "R package version 0.2.2.",
                  "https://CRAN.R-project.org/package=ggpie"
 
   )

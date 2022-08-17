@@ -164,8 +164,7 @@ ggpie <- function(data, group_key = NULL, count_type = c("count", "full"), fill_
           ) +
           geom_text(
             data = data[data$Freq >= labal_threshold, ],
-            aes(label = label, colour = group), show.legend = FALSE,
-            position = position_stack(vjust = 0.5),
+            aes(x = 1, y = CumFreq, label = label, colour = group), show.legend = FALSE,
             size = label_size
           ) +
           coord_polar(theta = "y", start = 0, clip = "off") +

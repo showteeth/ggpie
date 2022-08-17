@@ -1,190 +1,116 @@
 ---
-title: "ggpie"
-author: "Yabing Song"
-date: "`r Sys.Date()`"
-output: prettydoc::html_pretty
-vignette: >
-  %\VignetteIndexEntry{Introduction to ggpie}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
+title: "ggpie_manual"
+output: html_document
 ---
 
-```{r, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>",
-  dpi=60
-)
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# ggpie - A ggplot2 extension to create pie, donut and rose pie plot
+## Sample data
+The sample data is from `ggplot2`:
+```{r sample_data}
+# load sample data
+library(ggplot2)
+data(diamonds)
+# check data
+str(diamonds)
+```
 
-<img src = "../man/figures/ggpie_hex.png" align = "right" width = "200"/>
+## ggpie
+### Introduction
+[ggpie](https://github.com/showteeth/ggpie) aims to create **pie (2D and 3D)**, **donut** and **rose pie** plot with the `ggplot2` plotting system which implemented the grammar of graphics. It contains five main functions:
 
-## Introduction
-`ggpie` aims to create **pie (2D and 3D)**, **donut** and **rose pie** plot with the `ggplot2` plotting system which implemented the grammar of graphics. It contains five main functions:
+-   `ggpie`: Create 2D pie plot with single group variable.
+-   `ggdonut`: Create 2D donut plot with single group variable.
+-   `ggnestedpie`: Create 2D nested pie plot with two group variables.
+-   `ggpie3D`: Create 3D pie plot with single group variable.
+-   `ggrosepie`: Create rose pie plot with single or two group variables.
 
-* `ggpie`: Create 2D pie plot with single group variable.
-* `ggdonut`: Create 2D donut plot with single group variable.
-* `ggnestedpie`: Create 2D nested pie plot with two group variables.
-* `ggpie3D`: Create 3D pie plot with single group variable.
-* `ggrosepie`: Create rose pie plot with single or two group variables.
+One of the advantages of [ggpie](https://github.com/showteeth/ggpie) is the optimization of the label, it supports two main label styles (**horizontal** and **circle**) and three label positions (**in**, **out** and **mix**).
 
-<hr />
+------------------
 
-## Installation
+### Installation
 You can install the released version of `ggpie` from [CRAN](https://cran.r-project.org/web/packages/ggpie/index.html) with:
 
-```{r eval=FALSE}
+```{r install_with_cran}
 install.packages("ggpie")
 ```
 
 Or install the package via the [Github repository](https://github.com/showteeth/ggpie):
-```{r eval=FALSE}
+
+```{r install_with_gtihub}
 # install.package("remotes")   #In case you have not installed it.
 remotes::install_github("showteeth/ggpie")
 ```
 
-<hr />
-
-## Usage
-### Preapre data
-```{r prepare}
+Load `ggpie`:
+```{r load_ggpie}
 library(ggpie)
-library(ggplot2)
-data(diamonds)
-# check data used
-str(diamonds)
 ```
 
-<hr />
+-----------------------
 
-### Pie plot
-#### no label
-Pie plot with **no label**: 
-```{r pie_basic_no_label}
-# with no label
-ggpie(data = diamonds, group_key = "cut", count_type = "full",label_type = "none")
-```
-
-#### circle label
-**circle label** and **out** of pie:
-```{r pie_circle_out}
-ggpie(data = diamonds, group_key = "cut", count_type = "full",
-      label_info = "all", label_type = "circle",
-      label_size = 4, label_pos = "out")
-```
-
-**circle label** and **in** pie plot, with **no split**:
-```{r pie_circle_in_no_split}
-ggpie(data = diamonds, group_key = "cut", count_type = "full",
-      label_info = "all", label_type = "circle", label_split = NULL,
-      label_size = 4, label_pos = "in")
-```
-
-#### horizon label
-**horizon label** and **in** pie plot, with **no split**:
-```{r pie_horizon_in_no_split}
+## 2D pie chart
+### horizontal label
+Create a pie plot with label **in the pie**:
+```{r pie_horizontal_label_in}
 ggpie(data = diamonds, group_key = "cut", count_type = "full",
       label_info = "all", label_type = "horizon", label_split = NULL,
       label_size = 4, label_pos = "in")
 ```
 
-**horizon label** and **in** pie plot, **split with space**:
-```{r pie_horizon_in_split}
-ggpie(data = diamonds, group_key = "cut", count_type = "full",
-      label_info = "all", label_type = "horizon",
-      label_size = 4, label_pos = "in")
-```
-
-**horizon label** and **out** pie plot, with **no split**:
-```{r pie_horizon_out_no_split}
+Create a pie plot with label **out of the pie**:
+```{r pie_horizontal_label_out}
 ggpie(data = diamonds, group_key = "cut", count_type = "full",
       label_info = "all", label_type = "horizon",
       label_size = 4, label_pos = "out" )
 ```
 
-#### adjust threashold
-With `labal_threshold`, `ggpie` will move label below `labal_threshold` to out of pie. In this example, all labels below 10% are moved to out of pie:
-```{r pie_threashold_horizon_in}
+Create a pie plot with **mixture label**:
+```{r pie_horizontal_label_mixture}
 ggpie(data = diamonds, group_key = "cut", count_type = "full",
       label_info = "all", label_type = "horizon", label_split = NULL,
       label_size = 4, label_pos = "in", labal_threshold = 10)
 ```
 
-<hr />
+-----------------------
 
-### Donut plot
-#### no label
-```{r donut_basic_no_label}
-# with no label
-ggdonut(data = diamonds, group_key = "cut", count_type = "full",label_type = "none")
+### circle label
+Create a pie plot with label **in the pie**:
+```{r pie_circle_label_in}
+ggpie(data = diamonds, group_key = "cut", count_type = "full",
+      label_info = "all", label_type = "circle", label_split = NULL,
+      label_size = 4, label_pos = "in")
 ```
 
-#### circle label
-**circle label** and **out** of pie:
-```{r donut_circle_out}
-ggdonut(data = diamonds, group_key = "cut", count_type = "full",
-        label_info = "all", label_type = "circle",
-        label_size = 4, label_pos = "out")
+Create a pie plot with label **out of the pie**:
+```{r pie_circle_label_out}
+ggpie(data = diamonds, group_key = "cut", count_type = "full",
+      label_info = "all", label_type = "circle",label_split = NULL,
+      label_size = 4, label_pos = "out")
 ```
 
-**circle label** and **in** pie plot, with **no split**:
-```{r donut_circle_in_no_split}
-ggdonut(data = diamonds, group_key = "cut", count_type = "full",
-        label_info = "all", label_type = "circle", label_split = NULL,
-        label_size = 4, label_pos = "in")
+Please notice that, <mark>create a pie plot with circle label does not support mixture label</mark>.
+
+-----------------------
+
+### split label
+Besides adding **horizontal** and **circle** labels, `ggpie` also support split the label with regex. By default, ggpie will split the label by spaces (`[[:space:]]+`):
+```{r split_label}
+ggpie(data = diamonds, group_key = "cut", count_type = "full",
+      label_info = "all", label_type = "horizon", label_split = "[[:space:]]+",
+      label_size = 4, label_pos = "out" )
 ```
 
-#### horizon label
-**horizon label** and **in** pie plot, with **no split**:
-```{r donut_horizon_in_no_split}
-ggdonut(data = diamonds, group_key = "cut", count_type = "full",
-        label_info = "all", label_type = "horizon", label_split = NULL,
-        label_size = 4, label_pos = "in")
-```
+Please notice that, <mark>spliting the label is support by all available tools in `ggpie` (`ggpie`, `ggdonut`, `ggnestedpie`, `ggpie3D`, `ggrosepie`)</mark>.
 
-**horizon label** and **in** pie plot:
-```{r donut_horizon_in}
-ggdonut(data = diamonds, group_key = "cut", count_type = "full",
-        label_info = "all", label_type = "horizon",
-        label_size = 4, label_pos = "in")
-```
+-----------------------
 
-**horizon label** and **out** of pie plot, with **no split**:
-```{r donut_horizon_out_no_split}
-ggdonut(data = diamonds, group_key = "cut", count_type = "full",
-        label_info = "all", label_type = "horizon", label_split = NULL,
-        label_size = 4, label_pos = "out")
-```
-
-**horizon label** and **out** of pie plot:
-```{r donut_horizon_out}
-ggdonut(data = diamonds, group_key = "cut", count_type = "full",
-        label_info = "all", label_type = "horizon",
-        label_size = 4, label_pos = "out")
-```
-
-#### adjust threashold
-With `labal_threshold`, `ggpie` will move label below `labal_threshold` to out of donut. In this example, all labels below 10% are moved to out of donut:
-```{r donut_threashold_horizon_in}
-ggdonut(data = diamonds, group_key = "cut", count_type = "full",
-        label_info = "all", label_type = "horizon", label_split = NULL,
-        label_size = 4, label_pos = "in", labal_threshold = 10)
-```
-
-
-```{r donut_threashold_horizon_in_no_split}
-ggdonut(data = diamonds, group_key = "cut", count_type = "full",
-        label_info = "all", label_type = "horizon",
-        label_size = 4, label_pos = "in", labal_threshold = 10)
-```
-
-<hr />
-
-### 3D pie plot
-
-```{r pie3d}
+## 3D pie chart
+3D pie chart is adopted and modified from [ggthreed](https://github.com/coolbutuseless/ggthreed):
+```{r pie_3D}
 p1= ggpie3D(data = diamonds, group_key = "cut", count_type = "full", tilt_degrees = -10, label_size=2) + 
   ggtitle("tilt_degrees = -10") + 
   theme(plot.title = element_text(hjust = 0.5))
@@ -206,12 +132,54 @@ p4= ggpie3D(data = diamonds, group_key = "cut", count_type = "full", tilt_degree
 cowplot::plot_grid(p1,p2,p3,p4,ncol = 2)
 ```
 
-<hr />
+-----------------------
 
-### Nested pie/donut plot
+## Donut plot
+### horizontal label
+Create a donut plot with label **in the pie**:
+```{r donut_horizontal_label_in}
+ggdonut(data = diamonds, group_key = "cut", count_type = "full",
+        label_info = "all", label_type = "horizon", label_split = NULL,
+        label_size = 4, label_pos = "in")
+```
+
+Create a donut plot with label **out of the pie**:
+```{r donut_horizontal_label_out}
+ggdonut(data = diamonds, group_key = "cut", count_type = "full",
+        label_info = "all", label_type = "horizon", label_split = NULL,
+        label_size = 4, label_pos = "out")
+```
+
+Create a donut plot with **mixture label**:
+```{r donut_horizontal_label_mixture}
+ggdonut(data = diamonds, group_key = "cut", count_type = "full",
+        label_info = "all", label_type = "horizon",
+        label_size = 4, label_pos = "in", labal_threshold = 10)
+```
+
+-----------------------
+
+### circle label
+Create a donut plot with label **in the pie**:
+```{r donut_circle_label_in}
+ggdonut(data = diamonds, group_key = "cut", count_type = "full",
+        label_info = "all", label_type = "circle", label_split = NULL,
+        label_size = 4, label_pos = "in")
+```
+
+Create a donut plot with label **out of the pie**:
+```{r donut_circle_label_out}
+ggdonut(data = diamonds, group_key = "cut", count_type = "full",
+        label_info = "all", label_type = "circle",
+        label_size = 4, label_pos = "out")
+```
+
+-----------------------
+
+## Nested pie/donut plot
 It is often the case that we have **two categorical variables** and then need to plot for both of them, `ggnestedpie` is designed to deal with this.
 
-#### inner circle and outer circle
+### inner and outer are circle labels
 **inner circle label** and **no split**, **outer circle label** and **in** pie plot
 ```{r nested_pie_inner_outer_circle_in}
 ggnestedpie(data = diamonds, group_key = c("cut", "color"), count_type = "full",
@@ -234,8 +202,10 @@ ggnestedpie(data = diamonds, group_key = c("cut", "color"), count_type = "full",
             outer_label_type = "circle", outer_label_pos = "out", outer_label_info = "all")
 ```
 
-#### inner circle and outer horizon
-**inner circle label** and **no split**, **outer horizon label** and **out** of pie plot, **remove fraction below 1 of inner pie**:
+-----------------------
+
+### inner circle label and outer horizontal label
+**inner circle label** and **no split**, **outer horizontal label** and **out** of pie plot, **remove fraction below 1 of inner pie**:
 ```{r nested_pie_inner_outer_horizon_out_remove}
 ggnestedpie(data = diamonds, group_key = c("cut", "color"), count_type = "full",
             inner_label_info = "all", inner_label_split = NULL,
@@ -243,7 +213,7 @@ ggnestedpie(data = diamonds, group_key = c("cut", "color"), count_type = "full",
             outer_label_type = "horizon", outer_label_pos = "out", outer_label_info = "all")
 ```
 
-**inner circle label** and **no split**, **outer horizon label** and **in** pie plot, **remove fraction below 1 of inner pie**, **adjust fraction below 10 to out of pie of outer pie plot**:
+**inner circle label** and **no split**, **outer horizontal label** and **in** pie plot, **remove fraction below 1 of inner pie**, **adjust fraction below 10 to out of pie of outer pie plot**:
 ```{r nested_pie_inner_outer_remove_horizon_in_remove}
 ggnestedpie(data = diamonds, group_key = c("cut", "color"), count_type = "full",
             inner_label_info = "all", inner_label_split = NULL,
@@ -252,7 +222,10 @@ ggnestedpie(data = diamonds, group_key = c("cut", "color"), count_type = "full",
             outer_label_info = "all", outer_labal_threshold = 10)
 ```
 
-#### blank between plot
+-----------------------
+
+### blank between plot
+Add blank between inner and outer plot:
 ```{r nested_pie_blank_inner_outer}
 ggnestedpie(data = diamonds, group_key = c("cut", "color"), count_type = "full", 
             r0 = 0.5, r1 = 1.5, r2 = 2.6,inner_label_info = "all", inner_label_split = NULL,
@@ -261,10 +234,10 @@ ggnestedpie(data = diamonds, group_key = c("cut", "color"), count_type = "full",
             outer_label_info = "all", outer_labal_threshold = 10)
 ```
 
-<hr />
+-----------------------
 
-### Rose pie/donut plot
-#### single variable
+## Rose pie/donut plot
+### single variable
 **do not show tick**:
 ```{r rose_pie_no_tick, fig.height=10, fig.width=18}
 # pie plot
@@ -298,7 +271,9 @@ p2=ggrosepie(diamonds, group_key = "color", count_type = "full", label_info = "a
 cowplot::plot_grid(p1,p2)
 ```
 
-#### two variables
+-----------------------
+
+### two variables
 **do not show tick**:
 ```{r rose_pie_two_no_tick, fig.height=8, fig.width=18}
 # pie plot
@@ -338,20 +313,7 @@ p2=ggrosepie(diamonds, group_key = c("color","clarity"),
 cowplot::plot_grid(p1,p2)
 ```
 
-<hr />
-
-## Contributing
-Please note that the `ggpie` project is released with a [Contributor Code of Conduct](https://www.contributor-covenant.org/version/1/0/0/code-of-conduct/). By contributing to this project, you agree to abide by its terms.
-
-<br />
-
-
-
-
-
-
-
-
+-----------------------
 
 
 
