@@ -17,6 +17,7 @@
 -   `ggrosepie`: Create rose pie plot with single or two group variables.
 
 <hr />
+
 ## Installation
 
 You can install the released version of `ggpie` from [CRAN](https://cran.r-project.org/web/packages/ggpie/index.html) with:
@@ -35,6 +36,7 @@ remotes::install_github("showteeth/ggpie")
 In general, it is **recommended** to install from [Github repository](https://github.com/showteeth/ggpie) (update more timely).
 
 <hr />
+
 ## Citation
 
 ``` r
@@ -58,6 +60,7 @@ citation("ggpie")
 ```
 
 <hr />
+
 ## Usage
 
 ### Preapre data
@@ -86,6 +89,7 @@ str(diamonds)
 ```
 
 <hr />
+
 ### Pie plot
 
 #### no label
@@ -166,6 +170,7 @@ ggpie(data = diamonds, group_key = "cut", count_type = "full",
 <img src="man/figures/README-pie_threashold_horizon_in-1.png" width="100%" />
 
 <hr />
+
 ### Donut plot
 
 #### no label
@@ -262,6 +267,7 @@ ggdonut(data = diamonds, group_key = "cut", count_type = "full",
 <img src="man/figures/README-donut_threashold_horizon_in_no_split-1.png" width="100%" />
 
 <hr />
+
 ### 3D pie plot
 
 ``` r
@@ -289,6 +295,7 @@ cowplot::plot_grid(p1,p2,p3,p4,ncol = 2)
 <img src="man/figures/README-pie3d-1.png" width="100%" />
 
 <hr />
+
 ### Nested pie/donut plot
 
 It is often the case that we have **two categorical variables** and then need to plot for both of them, `ggnestedpie` is designed to deal with this.
@@ -370,6 +377,7 @@ ggnestedpie(data = diamonds, group_key = c("cut", "color"), count_type = "full",
 <img src="man/figures/README-nested_pie_blank_inner_outer-1.png" width="100%" />
 
 <hr />
+
 ### Rose pie/donut plot
 
 #### single variable
@@ -467,6 +475,7 @@ cowplot::plot_grid(p1,p2)
 <img src="man/figures/README-rose_pie_two_with_tick_specific_break-1.png" width="100%" />
 
 <hr />
+
 ## Contributing
 
 Please note that the `ggpie` project is released with a [Contributor Code of Conduct](https://www.contributor-covenant.org/version/1/0/0/code-of-conduct/). By contributing to this project, you agree to abide by its terms.
