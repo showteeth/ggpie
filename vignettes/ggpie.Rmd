@@ -47,6 +47,13 @@ remotes::install_github("showteeth/ggpie")
 
 <hr />
 
+## Citation
+```{r citation}
+citation("ggpie")
+```
+
+<hr />
+
 ## Usage
 ### Preapre data
 ```{r prepare}

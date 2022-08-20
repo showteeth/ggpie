@@ -48,6 +48,15 @@ Or install the package via the [Github repository](https://github.com/showteeth/
 remotes::install_github("showteeth/ggpie")
 ```
 
+In general, it is **recommended** to install from [Github repository](https://github.com/showteeth/ggpie) (update more timely).
+
+<hr />
+
+## Citation
+```{r citation}
+citation("ggpie")
+```
+
 <hr />
 
 ## Usage
