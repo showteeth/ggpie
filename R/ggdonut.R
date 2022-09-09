@@ -13,6 +13,7 @@
 #' @param labal_threshold Threashold of the ratio to determine label position (in/out pie). Default: NULL.
 #' @param label_size Size of the label. Default: 4.
 #' @param border_color Border color. Default: black.
+#' @param border_size Border thickness. Default: 1.
 #' @param r0 The radius of inner blank circle. Default: 1.
 #' @param r1 The radius of outer circle. Default: 3.
 #' @param donut.label Logical value, whether to show total number in the center of the plot. Default: TRUE.
@@ -85,7 +86,7 @@
 ggdonut <- function(data, group_key = NULL, count_type = c("count", "full"), fill_color = NULL, label_info = c("count", "ratio", "all"),
                     label_split = "[[:space:]]+", label_color = "black",
                     label_type = c("circle", "horizon", "none"), label_pos = c("in", "out"), label_gap = 0.05,
-                    labal_threshold = NULL, label_size = 4, border_color = "black",
+                    labal_threshold = NULL, label_size = 4, border_color = "black", border_size = 1,
                     r0 = 1, r1 = 3, donut.label = TRUE, donut.label.size = 4, donut.label.color = "red") {
   # check parameters
   count_type <- match.arg(arg = count_type)
@@ -111,7 +112,7 @@ ggdonut <- function(data, group_key = NULL, count_type = c("count", "full"), fil
       pie_plot <- ggplot() +
         geom_bar(data,
           mapping = aes(x = (r0 + r1) / 2, y = count, fill = group),
-          width = r1 - r0, stat = "identity", color = border_color
+          width = r1 - r0, stat = "identity", color = border_color, size = border_size
         ) +
         xlim(0, NA) +
         geom_text(data,
@@ -126,7 +127,7 @@ ggdonut <- function(data, group_key = NULL, count_type = c("count", "full"), fil
       pie_plot <- ggplot() +
         geom_bar(data,
           mapping = aes(x = (r0 + r1) / 2, y = count, fill = group),
-          width = r1 - r0, stat = "identity", color = border_color
+          width = r1 - r0, stat = "identity", color = border_color, size = border_size
         ) +
         xlim(0, NA) +
         geom_text(data,
@@ -148,7 +149,7 @@ ggdonut <- function(data, group_key = NULL, count_type = c("count", "full"), fil
       pie_plot <- ggplot() +
         geom_bar(data,
           mapping = aes(x = (r0 + r1) / 2, y = Freq, fill = group),
-          width = r1 - r0, stat = "identity", color = border_color
+          width = r1 - r0, stat = "identity", color = border_color, size = border_size
         ) +
         xlim(0, NA) +
         geom_text_repel(
@@ -166,7 +167,7 @@ ggdonut <- function(data, group_key = NULL, count_type = c("count", "full"), fil
         pie_plot <- ggplot() +
           geom_bar(data,
             mapping = aes(x = (r0 + r1) / 2, y = Freq, fill = group),
-            width = r1 - r0, stat = "identity", color = border_color
+            width = r1 - r0, stat = "identity", color = border_color, size = border_size
           ) +
           xlim(0, NA) +
           geom_text_repel(
@@ -182,7 +183,7 @@ ggdonut <- function(data, group_key = NULL, count_type = c("count", "full"), fil
         pie_plot <- ggplot() +
           geom_bar(data,
             mapping = aes(x = (r0 + r1) / 2, y = Freq, fill = group),
-            width = r1 - r0, stat = "identity", color = border_color
+            width = r1 - r0, stat = "identity", color = border_color, size = border_size
           ) +
           xlim(0, NA) +
           geom_text_repel(
@@ -208,7 +209,7 @@ ggdonut <- function(data, group_key = NULL, count_type = c("count", "full"), fil
     pie_plot <- ggplot() +
       geom_bar(data,
         mapping = aes(x = (r0 + r1) / 2, y = count, fill = group),
-        width = r1 - r0, stat = "identity", color = border_color
+        width = r1 - r0, stat = "identity", color = border_color, size = border_size
       ) +
       xlim(0, NA) +
       coord_polar(theta = "y", start = 0, clip = "off") +

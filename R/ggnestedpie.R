@@ -25,6 +25,7 @@
 #' @param outer_labal_threshold Threashold of the ratio to determine label position (in/out pie). Default: NULL.
 #' @param outer_label_size Size of the label on outer pie. Default: 4.
 #' @param border_color Border color. Default: black.
+#' @param border_size Border thickness. Default: 1.
 #'
 #' @return A ggplot2 object.
 #' @importFrom dplyr group_by summarise select
@@ -93,7 +94,7 @@ ggnestedpie <- function(data, group_key = NULL, count_type = c("count", "full"),
                         outer_fill_color = NULL, outer_label_type = c("circle", "horizon", "none"), outer_label_pos = c("in", "out"),
                         outer_label_info = c("count", "ratio", "all"), outer_label_split = "[[:space:]]+", outer_label_color = "black",
                         outer_label_gap = 0.05, outer_labal_threshold = NULL, outer_label_size = 4,
-                        border_color = "black") {
+                        border_color = "black", border_size = 1) {
   # check parameters
   count_type <- match.arg(arg = count_type)
   inner_label_info <- match.arg(arg = inner_label_info)
@@ -203,7 +204,10 @@ ggnestedpie <- function(data, group_key = NULL, count_type = c("count", "full"),
       inner_label_data[(inner_label_data$count * 100 / sum(inner_label_data$count)) < inner_labal_threshold, "label"] <- ""
     }
     inner_pie_plot <- ggplot() +
-      geom_bar(sub_data, mapping = aes(x = (r0 + r1) / 2, y = count, fill = group), colour = border_color, stat = "identity", width = inner_width) +
+      geom_bar(sub_data,
+        mapping = aes(x = (r0 + r1) / 2, y = count, fill = group), colour = border_color,
+        stat = "identity", width = inner_width, size = border_size
+      ) +
       geom_text(
         data = inner_label_data,
         mapping = aes(x = (r0 + r1) / 2, y = count, label = label, angle = angle, color = group), show.legend = FALSE,
@@ -221,7 +225,7 @@ ggnestedpie <- function(data, group_key = NULL, count_type = c("count", "full"),
     inner_pie_plot <- ggplot() +
       geom_bar(sub_data,
         mapping = aes(x = (r0 + r1) / 2, y = count, fill = group), colour = border_color,
-        stat = "identity", width = inner_width
+        stat = "identity", width = inner_width, size = border_size
       ) +
       coord_polar(theta = "y", start = 0, clip = "off") +
       theme_void() +
@@ -285,7 +289,7 @@ ggnestedpie <- function(data, group_key = NULL, count_type = c("count", "full"),
           new_scale_color() + new_scale_fill() +
           geom_bar(main_data,
             mapping = aes(x = (r2 + r1) / 2, y = count, fill = group),
-            width = outer_width, stat = "identity", color = border_color
+            width = outer_width, stat = "identity", color = border_color, size = border_size
           ) +
           geom_text(main_data,
             mapping = aes(x = r2 + outer_label_gap, y = CumSum, label = label, angle = angle, colour = group), show.legend = FALSE,
@@ -302,7 +306,7 @@ ggnestedpie <- function(data, group_key = NULL, count_type = c("count", "full"),
           new_scale_color() + new_scale_fill() +
           geom_bar(main_data,
             mapping = aes(x = (r2 + r1) / 2, y = count, fill = group),
-            width = outer_width, stat = "identity", color = border_color
+            width = outer_width, stat = "identity", color = border_color, size = border_size
           ) +
           geom_text(main_data,
             mapping = aes(x = (r2 + r1) / 2, y = CumSum, label = label, angle = angle, colour = group),
@@ -324,7 +328,7 @@ ggnestedpie <- function(data, group_key = NULL, count_type = c("count", "full"),
           new_scale_color() + new_scale_fill() +
           geom_bar(main_data,
             mapping = aes(x = (r2 + r1) / 2, y = count, fill = group),
-            width = outer_width, stat = "identity", color = border_color
+            width = outer_width, stat = "identity", color = border_color, size = border_size
           ) +
           geom_text_repel(
             data = main_data,
@@ -344,7 +348,7 @@ ggnestedpie <- function(data, group_key = NULL, count_type = c("count", "full"),
             new_scale_color() + new_scale_fill() +
             geom_bar(main_data,
               mapping = aes(x = (r2 + r1) / 2, y = count, fill = group),
-              width = outer_width, stat = "identity", color = border_color
+              width = outer_width, stat = "identity", color = border_color, size = border_size
             ) +
             geom_text_repel(
               data = main_data,
@@ -362,7 +366,7 @@ ggnestedpie <- function(data, group_key = NULL, count_type = c("count", "full"),
             new_scale_color() + new_scale_fill() +
             geom_bar(main_data,
               mapping = aes(x = (r2 + r1) / 2, y = count, fill = group),
-              width = outer_width, stat = "identity", color = border_color
+              width = outer_width, stat = "identity", color = border_color, size = border_size
             ) +
             geom_text_repel(
               data = main_data[main_data$count * 100 / sum(main_data$count) < outer_labal_threshold, ],
@@ -389,7 +393,7 @@ ggnestedpie <- function(data, group_key = NULL, count_type = c("count", "full"),
       new_scale_color() + new_scale_fill() +
       geom_bar(main_data,
         mapping = aes(x = (r2 + r1) / 2, y = count, fill = group),
-        width = outer_width, stat = "identity", color = border_color
+        width = outer_width, stat = "identity", color = border_color, size = border_size
       ) +
       coord_polar(theta = "y", start = 0, clip = "off") +
       theme_void() +

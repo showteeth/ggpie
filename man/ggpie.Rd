@@ -17,7 +17,8 @@ ggpie(
   label_gap = 0.05,
   labal_threshold = NULL,
   label_size = 4,
-  border_color = "black"
+  border_color = "black",
+  border_size = 1
 )
 }
 \arguments{
@@ -46,6 +47,8 @@ ggpie(
 \item{label_size}{Size of the label. Default: 4.}
 
 \item{border_color}{Border color. Default: black.}
+
+\item{border_size}{Border thickness. Default: 1.}
 }
 \value{
 A ggplot2 object.

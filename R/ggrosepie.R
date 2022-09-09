@@ -18,6 +18,7 @@
 #' @param donut_label_size The label size of center label. Default: 4.
 #' @param donut_label_color The color of center label. Default: red.
 #' @param border_color Border color. Default: black.
+#' @param border_size Border thickness. Default: 1.
 #'
 #' @return A ggplot2 object.
 #' @export
@@ -69,7 +70,8 @@
 #' )
 ggrosepie <- function(data, group_key = NULL, count_type = c("count", "full"), fill_color = NULL, label_info = c("count", "ratio", "all"),
                       label_color = "black", sort = TRUE, show_tick = TRUE, tick_break = NULL, show_label = TRUE, label_sep = "|", label_gap = 0.05,
-                      label_size = 4, donut_frac = 0.1, donut_label = TRUE, donut_label_size = 4, donut_label_color = "red", border_color = "black") {
+                      label_size = 4, donut_frac = 0.1, donut_label = TRUE, donut_label_size = 4, donut_label_color = "red",
+                      border_color = "black", border_size = 1) {
   # check parameters
   count_type <- match.arg(arg = count_type)
   label_info <- match.arg(arg = label_info)
@@ -110,7 +112,7 @@ ggrosepie <- function(data, group_key = NULL, count_type = c("count", "full"), f
       rose_plot <- ggplot() +
         geom_bar(
           data = data, mapping = aes_string(x = "group", y = "count", fill = "group"),
-          stat = "identity", color = border_color
+          stat = "identity", color = border_color, size = border_size
         ) +
         coord_polar(theta = "x", start = start_pi, clip = "off") +
         theme_bw() +
@@ -197,7 +199,7 @@ ggrosepie <- function(data, group_key = NULL, count_type = c("count", "full"), f
       rose_plot <- ggplot() +
         geom_bar(
           data = data, mapping = aes_string(x = "group", y = "count", fill = "group"),
-          stat = "identity", color = border_color
+          stat = "identity", color = border_color, size = border_size
         ) +
         coord_polar(theta = "x", start = 0, clip = "off") +
         theme_bw() +
@@ -321,7 +323,7 @@ ggrosepie <- function(data, group_key = NULL, count_type = c("count", "full"), f
         rose_plot <- ggplot() +
           geom_bar(
             data = data, mapping = aes_string(x = group_key[1], y = "count", fill = group_key[2]),
-            stat = "identity", color = border_color
+            stat = "identity", color = border_color, size = border_size
           ) +
           coord_polar(theta = "x", start = start_pi, clip = "off") +
           theme_bw() +
@@ -408,7 +410,7 @@ ggrosepie <- function(data, group_key = NULL, count_type = c("count", "full"), f
         rose_plot <- ggplot() +
           geom_bar(
             data = data, mapping = aes_string(x = group_key[1], y = "count", fill = group_key[2]),
-            stat = "identity", color = border_color
+            stat = "identity", color = border_color, size = border_size
           ) +
           coord_polar(theta = "x", start = 0, clip = "off") +
           theme_bw() +

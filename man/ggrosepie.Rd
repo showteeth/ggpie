@@ -22,7 +22,8 @@ ggrosepie(
   donut_label = TRUE,
   donut_label_size = 4,
   donut_label_color = "red",
-  border_color = "black"
+  border_color = "black",
+  border_size = 1
 )
 }
 \arguments{
@@ -61,6 +62,8 @@ ggrosepie(
 \item{donut_label_color}{The color of center label. Default: red.}
 
 \item{border_color}{Border color. Default: black.}
+
+\item{border_size}{Border thickness. Default: 1.}
 }
 \value{
 A ggplot2 object.

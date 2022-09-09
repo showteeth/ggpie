@@ -18,6 +18,7 @@ ggdonut(
   labal_threshold = NULL,
   label_size = 4,
   border_color = "black",
+  border_size = 1,
   r0 = 1,
   r1 = 3,
   donut.label = TRUE,
@@ -51,6 +52,8 @@ ggdonut(
 \item{label_size}{Size of the label. Default: 4.}
 
 \item{border_color}{Border color. Default: black.}
+
+\item{border_size}{Border thickness. Default: 1.}
 
 \item{r0}{The radius of inner blank circle. Default: 1.}
 
