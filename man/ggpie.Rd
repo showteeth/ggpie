@@ -11,11 +11,12 @@ ggpie(
   fill_color = NULL,
   label_info = c("count", "ratio", "all"),
   label_split = "[[:space:]]+",
+  label_len = 40,
   label_color = "black",
   label_type = c("circle", "horizon", "none"),
   label_pos = c("in", "out"),
   label_gap = 0.05,
-  labal_threshold = NULL,
+  label_threshold = NULL,
   label_size = 4,
   border_color = "black",
   border_size = 1
@@ -34,6 +35,8 @@ ggpie(
 
 \item{label_split}{Pattern used to split the label, support regular expression. Default: space.}
 
+\item{label_len}{The length of label text. Used when \code{label_split} is NULL. Default: 40.}
+
 \item{label_color}{Color of the label. Default: black.}
 
 \item{label_type}{Label style, chosen from circle, horizon and none (no label). Default: circle.}
@@ -42,7 +45,7 @@ ggpie(
 
 \item{label_gap}{Gap between label and pie plot, used when \code{label_pos} is out.}
 
-\item{labal_threshold}{Threashold of the ratio to determine label position (in/out pie). Default: NULL.}
+\item{label_threshold}{Threshold of the ratio to determine label position (in/out pie). Default: NULL.}
 
 \item{label_size}{Size of the label. Default: 4.}
 
@@ -95,10 +98,10 @@ ggpie(
   label_info = "all", label_type = "horizon", label_split = NULL,
   label_size = 4, label_pos = "out"
 )
-# with label threashold
+# with label threshold
 ggpie(
   data = diamonds, group_key = "cut", count_type = "full",
   label_info = "all", label_type = "horizon", label_split = NULL,
-  label_size = 4, label_pos = "in", labal_threshold = 10
+  label_size = 4, label_pos = "in", label_threshold = 10
 )
 }

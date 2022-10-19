@@ -5,6 +5,8 @@
 #' @param count_type Data frame type, chosen from "count" and "full". "count" means summarized data and "full" means full data. Default: count.
 #' @param fill_color Colors used. When length of \code{group_key} is two, color the subgroup, otherwise the main group. Default: NULL (conduct automatic selection).
 #' @param label_info Label information type, chosen from count, ratio and all (count and ratio). Default: count.
+#' @param label_split Pattern used to split the label, support regular expression. Default: NULL.
+#' @param label_len The length of label text. Used when \code{label_split} is NULL. Default: 40.
 #' @param label_color Color of the label. When length of \code{group_key} is two, this should be set to one color. Default: black.
 #' @param sort Logical value, whether to order the plot by counts. Default: TRUE.
 #' @param show_tick Logical value, whether to show the tick. Default: TRUE.
@@ -69,8 +71,9 @@
 #'   tick_break = c(3000, 5000, 7000, 11000), donut_frac = 0.3, donut_label_size = 3
 #' )
 ggrosepie <- function(data, group_key = NULL, count_type = c("count", "full"), fill_color = NULL, label_info = c("count", "ratio", "all"),
-                      label_color = "black", sort = TRUE, show_tick = TRUE, tick_break = NULL, show_label = TRUE, label_sep = "|", label_gap = 0.05,
-                      label_size = 4, donut_frac = 0.1, donut_label = TRUE, donut_label_size = 4, donut_label_color = "red",
+                      label_split = NULL, label_len = 40, label_color = "black", sort = TRUE, show_tick = TRUE, tick_break = NULL,
+                      show_label = TRUE, label_sep = "|", label_gap = 0.05, label_size = 4,
+                      donut_frac = 0.1, donut_label = TRUE, donut_label_size = 4, donut_label_color = "red",
                       border_color = "black", border_size = 1) {
   # check parameters
   count_type <- match.arg(arg = count_type)
@@ -80,7 +83,7 @@ ggrosepie <- function(data, group_key = NULL, count_type = c("count", "full"), f
   if (length(group_key) == 1) {
     plot.data <- PrepareData(
       data = data, group_key = group_key, count_type = count_type, fill_color = fill_color,
-      label_info = label_info, label_split = NULL, label_color = label_color
+      label_info = label_info, label_split = label_split, label_len = label_len, label_color = label_color
     )
     data <- plot.data[["data"]]
     fill_color <- plot.data[["fill_color"]]

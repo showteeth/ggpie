@@ -62,6 +62,7 @@ adapt2polygon <- function(data, fill_color = NULL, start_degrees = 0, tilt_degre
 #' @param show_label Logical value, whether to show label or not. Default: TRUE.
 #' @param label_info Label information type, chosen from count, ratio and all (count and ratio). Default: count.
 #' @param label_split Pattern used to split the label, support regular expression. Default: space.
+#' @param label_len The length of label text. Used when \code{label_split} is NULL. Default: 40.
 #' @param label_size Size of the label. Default: 4.
 #'
 #' @return A ggplot2 object.
@@ -71,6 +72,7 @@ adapt2polygon <- function(data, fill_color = NULL, start_degrees = 0, tilt_degre
 #' @importFrom grDevices colorRampPalette col2rgb rgb
 #' @importFrom RColorBrewer brewer.pal
 #' @importFrom scales percent
+#' @importFrom stringr str_wrap
 #' @import ggplot2
 #' @importFrom utils head tail
 #' @importFrom stats aggregate setNames
@@ -90,7 +92,7 @@ adapt2polygon <- function(data, fill_color = NULL, start_degrees = 0, tilt_degre
 #' ggpie3D(data = data, start_degrees = 0, label_split = NULL)
 ggpie3D <- function(data, group_key = NULL, count_type = c("count", "full"), fill_color = NULL, start_degrees = 0, tilt_degrees = -20,
                     height = 0.1, darken = 0.15, camera_eye = c(0, 3, 5), camera_look_at = c(0, 0, 0), show_label = TRUE,
-                    label_info = c("count", "ratio", "all"), label_split = "[[:space:]]+", label_size = 4) {
+                    label_info = c("count", "ratio", "all"), label_split = "[[:space:]]+", label_len = 40, label_size = 4) {
   # check parameters
   count_type <- match.arg(arg = count_type)
 
@@ -131,9 +133,13 @@ ggpie3D <- function(data, group_key = NULL, count_type = c("count", "full"), fil
   } else if (label_info == "all") {
     data$label <- paste0(data$count, " (", scales::percent(data$count / sum(data$count)), ")")
   }
-  # split label
+  # split label or specify label length
   if (!is.null(label_split)) {
     data$label <- gsub(pattern = label_split, replacement = "\n", x = data$label)
+  } else {
+    if (!is.null(label_len)) {
+      data$label <- stringr::str_wrap(data$label, width = label_len)
+    }
   }
   # create label data frame
   anno_pos <- pie_data %>%

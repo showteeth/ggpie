@@ -18,6 +18,7 @@ ggpie3D(
   show_label = TRUE,
   label_info = c("count", "ratio", "all"),
   label_split = "[[:space:]]+",
+  label_len = 40,
   label_size = 4
 )
 }
@@ -47,6 +48,8 @@ ggpie3D(
 \item{label_info}{Label information type, chosen from count, ratio and all (count and ratio). Default: count.}
 
 \item{label_split}{Pattern used to split the label, support regular expression. Default: space.}
+
+\item{label_len}{The length of label text. Used when \code{label_split} is NULL. Default: 40.}
 
 \item{label_size}{Size of the label. Default: 4.}
 }

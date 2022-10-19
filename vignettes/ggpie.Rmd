@@ -35,12 +35,12 @@ knitr::opts_chunk$set(
 ## Installation
 You can install the released version of `ggpie` from [CRAN](https://cran.r-project.org/web/packages/ggpie/index.html) with:
 
-```{r eval=FALSE}
+```{r cran_install, eval=FALSE, message=FALSE, warning=FALSE}
 install.packages("ggpie")
 ```
 
 Or install the package via the [Github repository](https://github.com/showteeth/ggpie):
-```{r eval=FALSE}
+```{r github_install, eval=FALSE, message=FALSE, warning=FALSE}
 # install.package("remotes")   #In case you have not installed it.
 remotes::install_github("showteeth/ggpie")
 ```

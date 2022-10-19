@@ -13,16 +13,18 @@
 #' @param inner_label_info Label information type of inner pie plot, chosen from count, ratio and all (count and ratio). Default: count.
 #' @param inner_label_color Color of the label on inner pie. Default: black.
 #' @param inner_label_split Pattern used to split the label of inner pie, support regular expression. Default: space.
-#' @param inner_labal_threshold Threashold of the ratio to determine label or not on inner pie. Default: NULL.
+#' @param inner_label_len Label text length of inner pie. Used when \code{inner_label_split} is NULL. Default: 40.
+#' @param inner_label_threshold Threshold of the ratio to determine label or not on inner pie. Default: NULL.
 #' @param inner_label_size Size of the label on inner pie. Default: 4.
 #' @param outer_fill_color Colors used for outer pie plot. Default: NULL (conduct automatic selection).
 #' @param outer_label_type Label style of outer pie plot, chosen from circle, horizon and none (no label). Default: circle.
 #' @param outer_label_pos Label position of outer pie, chosen from in and out. Default: in.
 #' @param outer_label_info Label information type of outer pie plot, chosen from count, ratio and all (count and ratio). Default: count.
 #' @param outer_label_split Pattern used to split the label of outer pie, support regular expression. Default: space.
+#' @param outer_label_len Label text length of outer pie. Used when \code{outer_label_split} is NULL. Default: 40.
 #' @param outer_label_color Color of the label on outer pie. Default: black.
 #' @param outer_label_gap Gap between label and outer pie plot, used when \code{outer_label_pos} is out.
-#' @param outer_labal_threshold Threashold of the ratio to determine label position (in/out pie). Default: NULL.
+#' @param outer_label_threshold Threshold of the ratio to determine label position (in/out pie). Default: NULL.
 #' @param outer_label_size Size of the label on outer pie. Default: 4.
 #' @param border_color Border color. Default: black.
 #' @param border_size Border thickness. Default: 1.
@@ -34,6 +36,7 @@
 #' @importFrom grDevices colorRampPalette
 #' @importFrom RColorBrewer brewer.pal
 #' @importFrom scales percent
+#' @importFrom stringr str_wrap
 #' @import ggplot2
 #' @importFrom ggrepel geom_text_repel
 #' @import ggnewscale
@@ -53,7 +56,7 @@
 #' ggnestedpie(
 #'   data = diamonds, group_key = c("cut", "color"), count_type = "full",
 #'   inner_label_info = "all", inner_label_split = NULL,
-#'   inner_labal_threshold = 1, inner_label_size = 3,
+#'   inner_label_threshold = 1, inner_label_size = 3,
 #'   outer_label_type = "circle", outer_label_pos = "in", outer_label_info = "all"
 #' )
 #' # inner circle label, outer circle label and out of pie plot
@@ -67,7 +70,7 @@
 #' ggnestedpie(
 #'   data = diamonds, group_key = c("cut", "color"), count_type = "full",
 #'   inner_label_info = "all", inner_label_split = NULL,
-#'   inner_labal_threshold = 1, inner_label_size = 3,
+#'   inner_label_threshold = 1, inner_label_size = 3,
 #'   outer_label_type = "horizon", outer_label_pos = "out", outer_label_info = "all"
 #' )
 #' # inner circle label and no split, outer horizon label and in pie plot,
@@ -76,24 +79,24 @@
 #' ggnestedpie(
 #'   data = diamonds, group_key = c("cut", "color"), count_type = "full",
 #'   inner_label_info = "all", inner_label_split = NULL,
-#'   inner_labal_threshold = 1, inner_label_size = 3,
+#'   inner_label_threshold = 1, inner_label_size = 3,
 #'   outer_label_type = "horizon", outer_label_pos = "in",
-#'   outer_label_info = "all", outer_labal_threshold = 10
+#'   outer_label_info = "all", outer_label_threshold = 10
 #' )
 #' # create blank between inner and outer pie
 #' ggnestedpie(
 #'   data = diamonds, group_key = c("cut", "color"), count_type = "full", r0 = 0.5, r1 = 1.5, r2 = 2.6,
 #'   inner_label_info = "all", inner_label_split = NULL,
-#'   inner_labal_threshold = 1, inner_label_size = 3,
+#'   inner_label_threshold = 1, inner_label_size = 3,
 #'   outer_label_type = "horizon", outer_label_pos = "in",
-#'   outer_label_info = "all", outer_labal_threshold = 10
+#'   outer_label_info = "all", outer_label_threshold = 10
 #' )
 ggnestedpie <- function(data, group_key = NULL, count_type = c("count", "full"), r0 = 0.5, r1 = 1.5, r2 = 2.5, inner_thick = 1, outer_thick = 1,
                         inner_fill_color = NULL, inner_label = TRUE, inner_label_info = c("count", "ratio", "all"), inner_label_color = "black",
-                        inner_label_split = "[[:space:]]+", inner_labal_threshold = NULL, inner_label_size = 4,
+                        inner_label_split = "[[:space:]]+", inner_label_len = 40, inner_label_threshold = NULL, inner_label_size = 4,
                         outer_fill_color = NULL, outer_label_type = c("circle", "horizon", "none"), outer_label_pos = c("in", "out"),
-                        outer_label_info = c("count", "ratio", "all"), outer_label_split = "[[:space:]]+", outer_label_color = "black",
-                        outer_label_gap = 0.05, outer_labal_threshold = NULL, outer_label_size = 4,
+                        outer_label_info = c("count", "ratio", "all"), outer_label_split = "[[:space:]]+", outer_label_len = 40, outer_label_color = "black",
+                        outer_label_gap = 0.05, outer_label_threshold = NULL, outer_label_size = 4,
                         border_color = "black", border_size = 1) {
   # check parameters
   count_type <- match.arg(arg = count_type)
@@ -176,9 +179,13 @@ ggnestedpie <- function(data, group_key = NULL, count_type = c("count", "full"),
     } else if (inner_label_info == "all") {
       sub_data$label <- paste0(sub_data$count, " (", scales::percent(sub_data$count / sum(sub_data$count)), ")")
     }
-    # split label
+    # split label or specify label length
     if (!is.null(inner_label_split)) {
       sub_data$label <- gsub(pattern = inner_label_split, replacement = "\n", x = sub_data$label)
+    } else {
+      if (!is.null(inner_label_len)) {
+        sub_data$label <- stringr::str_wrap(sub_data$label, width = inner_label_len)
+      }
     }
     # prepare label color
     if (is.null(inner_label_color)) {
@@ -197,11 +204,11 @@ ggnestedpie <- function(data, group_key = NULL, count_type = c("count", "full"),
       }
     }
     # get label data
-    if (is.null(inner_labal_threshold)) {
+    if (is.null(inner_label_threshold)) {
       inner_label_data <- sub_data
     } else {
       inner_label_data <- sub_data
-      inner_label_data[(inner_label_data$count * 100 / sum(inner_label_data$count)) < inner_labal_threshold, "label"] <- ""
+      inner_label_data[(inner_label_data$count * 100 / sum(inner_label_data$count)) < inner_label_threshold, "label"] <- ""
     }
     inner_pie_plot <- ggplot() +
       geom_bar(sub_data,
@@ -265,9 +272,13 @@ ggnestedpie <- function(data, group_key = NULL, count_type = c("count", "full"),
     } else if (outer_label_info == "all") {
       main_data$label <- paste0(main_data$count, " (", scales::percent(main_data$count / sum(main_data$count)), ")")
     }
-    # split label
+    # split label or specify label length
     if (!is.null(outer_label_split)) {
       main_data$label <- gsub(pattern = outer_label_split, replacement = "\n", x = main_data$label)
+    } else {
+      if (!is.null(outer_label_len)) {
+        main_data$label <- stringr::str_wrap(main_data$label, width = outer_label_len)
+      }
     }
     # get outer label color
     if (is.null(outer_label_color)) {
@@ -343,7 +354,7 @@ ggnestedpie <- function(data, group_key = NULL, count_type = c("count", "full"),
           guides(fill = guide_legend(title = group_key[1])) +
           xlim(0, NA)
       } else if (outer_label_pos == "in") {
-        if (is.null(outer_labal_threshold)) {
+        if (is.null(outer_label_threshold)) {
           pie_plot <- inner_pie_plot + guides(fill = guide_legend(title = group_key[2])) +
             new_scale_color() + new_scale_fill() +
             geom_bar(main_data,
@@ -369,13 +380,13 @@ ggnestedpie <- function(data, group_key = NULL, count_type = c("count", "full"),
               width = outer_width, stat = "identity", color = border_color, size = border_size
             ) +
             geom_text_repel(
-              data = main_data[main_data$count * 100 / sum(main_data$count) < outer_labal_threshold, ],
+              data = main_data[main_data$count * 100 / sum(main_data$count) < outer_label_threshold, ],
               aes(label = label, y = CumSum, x = after_stat(r2), colour = group), show.legend = FALSE,
               size = outer_label_size, point.padding = NA, max.overlaps = Inf, nudge_x = 1, nudge_y = 1,
               segment.curvature = -0.2, segment.ncp = 10, segment.angle = 20
             ) +
             geom_text(
-              data = main_data[main_data$count * 100 / sum(main_data$count) >= outer_labal_threshold, ],
+              data = main_data[main_data$count * 100 / sum(main_data$count) >= outer_label_threshold, ],
               aes(y = CumSum, x = (r2 + r1) / 2, label = label, colour = group),
               show.legend = FALSE, size = outer_label_size
             ) +

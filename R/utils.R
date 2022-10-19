@@ -1,5 +1,5 @@
 PrepareData <- function(data, group_key = NULL, count_type = c("count", "full"), fill_color = NULL, label_info = c("count", "ratio", "all"),
-                        label_split = "[[:space:]]+", label_color = "black") {
+                        label_split = "[[:space:]]+", label_len = 40, label_color = "black") {
   # check parameters
   count_type <- match.arg(arg = count_type)
   label_info <- match.arg(arg = label_info)
@@ -41,9 +41,13 @@ PrepareData <- function(data, group_key = NULL, count_type = c("count", "full"),
   } else if (label_info == "all") {
     data$label <- paste0(data$count, " (", scales::percent(data$count / sum(data$count)), ")")
   }
-  # split label
+  # split label or specify label length
   if (!is.null(label_split)) {
     data$label <- gsub(pattern = label_split, replacement = "\n", x = data$label)
+  } else {
+    if (!is.null(label_len)) {
+      data$label <- stringr::str_wrap(data$label, width = label_len)
+    }
   }
   # prepare fill color
   all_groups <- unique(as.character(data$group))

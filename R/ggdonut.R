@@ -6,11 +6,12 @@
 #' @param fill_color Colors used. Default: NULL (conduct automatic selection).
 #' @param label_info Label information type, chosen from count, ratio and all (count and ratio). Default: count.
 #' @param label_split Pattern used to split the label, support regular expression. Default: space.
+#' @param label_len The length of label text. Used when \code{label_split} is NULL. Default: 40.
 #' @param label_color Color of the label. Default: black.
 #' @param label_type Label style, chosen from circle, horizon and none (no label). Default: circle.
 #' @param label_pos Label position, chosen from in and out. Default: in.
 #' @param label_gap Gap between label and pie plot, used when \code{label_pos} is out.
-#' @param labal_threshold Threashold of the ratio to determine label position (in/out pie). Default: NULL.
+#' @param label_threshold Threshold of the ratio to determine label position (in/out pie). Default: NULL.
 #' @param label_size Size of the label. Default: 4.
 #' @param border_color Border color. Default: black.
 #' @param border_size Border thickness. Default: 1.
@@ -27,6 +28,7 @@
 #' @importFrom grDevices colorRampPalette
 #' @importFrom RColorBrewer brewer.pal
 #' @importFrom scales percent
+#' @importFrom stringr str_wrap
 #' @import ggplot2
 #' @importFrom ggrepel geom_text_repel
 #'
@@ -72,21 +74,21 @@
 #'   label_info = "all", label_type = "horizon",
 #'   label_size = 4, label_pos = "out"
 #' )
-#' # with label threashold
+#' # with label threshold
 #' ggdonut(
 #'   data = diamonds, group_key = "cut", count_type = "full",
 #'   label_info = "all", label_type = "horizon", label_split = NULL,
-#'   label_size = 4, label_pos = "in", labal_threshold = 10
+#'   label_size = 4, label_pos = "in", label_threshold = 10
 #' )
 #' ggdonut(
 #'   data = diamonds, group_key = "cut", count_type = "full",
 #'   label_info = "all", label_type = "horizon",
-#'   label_size = 4, label_pos = "in", labal_threshold = 10
+#'   label_size = 4, label_pos = "in", label_threshold = 10
 #' )
 ggdonut <- function(data, group_key = NULL, count_type = c("count", "full"), fill_color = NULL, label_info = c("count", "ratio", "all"),
-                    label_split = "[[:space:]]+", label_color = "black",
+                    label_split = "[[:space:]]+", label_len = 40, label_color = "black",
                     label_type = c("circle", "horizon", "none"), label_pos = c("in", "out"), label_gap = 0.05,
-                    labal_threshold = NULL, label_size = 4, border_color = "black", border_size = 1,
+                    label_threshold = NULL, label_size = 4, border_color = "black", border_size = 1,
                     r0 = 1, r1 = 3, donut.label = TRUE, donut.label.size = 4, donut.label.color = "red") {
   # check parameters
   count_type <- match.arg(arg = count_type)
@@ -97,7 +99,7 @@ ggdonut <- function(data, group_key = NULL, count_type = c("count", "full"), fil
   # prepare plot data
   plot.data <- PrepareData(
     data = data, group_key = group_key, count_type = count_type, fill_color = fill_color,
-    label_info = label_info, label_split = label_split, label_color = label_color
+    label_info = label_info, label_split = label_split, label_len = label_len, label_color = label_color
   )
   data <- plot.data[["data"]]
   fill_color <- plot.data[["fill_color"]]
@@ -163,7 +165,7 @@ ggdonut <- function(data, group_key = NULL, count_type = c("count", "full"), fil
         scale_fill_manual(values = fill_color) +
         scale_colour_manual(values = label_color)
     } else if (label_pos == "in") {
-      if (is.null(labal_threshold)) {
+      if (is.null(label_threshold)) {
         pie_plot <- ggplot() +
           geom_bar(data,
             mapping = aes(x = (r0 + r1) / 2, y = Freq, fill = group),
@@ -187,13 +189,13 @@ ggdonut <- function(data, group_key = NULL, count_type = c("count", "full"), fil
           ) +
           xlim(0, NA) +
           geom_text_repel(
-            data = data[data$Freq < labal_threshold, ],
+            data = data[data$Freq < label_threshold, ],
             aes(label = label, y = CumFreq, x = after_stat(r1), colour = group), show.legend = FALSE,
             size = label_size, point.padding = NA, max.overlaps = Inf, nudge_x = 1, nudge_y = 1,
             segment.curvature = -0.2, segment.ncp = 10, segment.angle = 20
           ) +
           geom_text(
-            data = data[data$Freq >= labal_threshold, ],
+            data = data[data$Freq >= label_threshold, ],
             aes(y = CumFreq, x = (r0 + r1) / 2, label = label, colour = group),
             show.legend = FALSE, size = label_size
           ) +

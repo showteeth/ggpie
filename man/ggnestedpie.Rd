@@ -18,16 +18,18 @@ ggnestedpie(
   inner_label_info = c("count", "ratio", "all"),
   inner_label_color = "black",
   inner_label_split = "[[:space:]]+",
-  inner_labal_threshold = NULL,
+  inner_label_len = 40,
+  inner_label_threshold = NULL,
   inner_label_size = 4,
   outer_fill_color = NULL,
   outer_label_type = c("circle", "horizon", "none"),
   outer_label_pos = c("in", "out"),
   outer_label_info = c("count", "ratio", "all"),
   outer_label_split = "[[:space:]]+",
+  outer_label_len = 40,
   outer_label_color = "black",
   outer_label_gap = 0.05,
-  outer_labal_threshold = NULL,
+  outer_label_threshold = NULL,
   outer_label_size = 4,
   border_color = "black",
   border_size = 1
@@ -60,7 +62,9 @@ ggnestedpie(
 
 \item{inner_label_split}{Pattern used to split the label of inner pie, support regular expression. Default: space.}
 
-\item{inner_labal_threshold}{Threashold of the ratio to determine label or not on inner pie. Default: NULL.}
+\item{inner_label_len}{Label text length of inner pie. Used when \code{inner_label_split} is NULL. Default: 40.}
+
+\item{inner_label_threshold}{Threshold of the ratio to determine label or not on inner pie. Default: NULL.}
 
 \item{inner_label_size}{Size of the label on inner pie. Default: 4.}
 
@@ -74,11 +78,13 @@ ggnestedpie(
 
 \item{outer_label_split}{Pattern used to split the label of outer pie, support regular expression. Default: space.}
 
+\item{outer_label_len}{Label text length of outer pie. Used when \code{outer_label_split} is NULL. Default: 40.}
+
 \item{outer_label_color}{Color of the label on outer pie. Default: black.}
 
 \item{outer_label_gap}{Gap between label and outer pie plot, used when \code{outer_label_pos} is out.}
 
-\item{outer_labal_threshold}{Threashold of the ratio to determine label position (in/out pie). Default: NULL.}
+\item{outer_label_threshold}{Threshold of the ratio to determine label position (in/out pie). Default: NULL.}
 
 \item{outer_label_size}{Size of the label on outer pie. Default: 4.}
 
@@ -106,7 +112,7 @@ ggnestedpie(
 ggnestedpie(
   data = diamonds, group_key = c("cut", "color"), count_type = "full",
   inner_label_info = "all", inner_label_split = NULL,
-  inner_labal_threshold = 1, inner_label_size = 3,
+  inner_label_threshold = 1, inner_label_size = 3,
   outer_label_type = "circle", outer_label_pos = "in", outer_label_info = "all"
 )
 # inner circle label, outer circle label and out of pie plot
@@ -120,7 +126,7 @@ ggnestedpie(
 ggnestedpie(
   data = diamonds, group_key = c("cut", "color"), count_type = "full",
   inner_label_info = "all", inner_label_split = NULL,
-  inner_labal_threshold = 1, inner_label_size = 3,
+  inner_label_threshold = 1, inner_label_size = 3,
   outer_label_type = "horizon", outer_label_pos = "out", outer_label_info = "all"
 )
 # inner circle label and no split, outer horizon label and in pie plot,
@@ -129,16 +135,16 @@ ggnestedpie(
 ggnestedpie(
   data = diamonds, group_key = c("cut", "color"), count_type = "full",
   inner_label_info = "all", inner_label_split = NULL,
-  inner_labal_threshold = 1, inner_label_size = 3,
+  inner_label_threshold = 1, inner_label_size = 3,
   outer_label_type = "horizon", outer_label_pos = "in",
-  outer_label_info = "all", outer_labal_threshold = 10
+  outer_label_info = "all", outer_label_threshold = 10
 )
 # create blank between inner and outer pie
 ggnestedpie(
   data = diamonds, group_key = c("cut", "color"), count_type = "full", r0 = 0.5, r1 = 1.5, r2 = 2.6,
   inner_label_info = "all", inner_label_split = NULL,
-  inner_labal_threshold = 1, inner_label_size = 3,
+  inner_label_threshold = 1, inner_label_size = 3,
   outer_label_type = "horizon", outer_label_pos = "in",
-  outer_label_info = "all", outer_labal_threshold = 10
+  outer_label_info = "all", outer_label_threshold = 10
 )
 }
