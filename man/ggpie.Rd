@@ -19,7 +19,9 @@ ggpie(
   label_threshold = NULL,
   label_size = 4,
   border_color = "black",
-  border_size = 1
+  border_size = 1,
+  nudge_x = 1,
+  nudge_y = 1
 )
 }
 \arguments{
@@ -52,6 +54,10 @@ ggpie(
 \item{border_color}{Border color. Default: black.}
 
 \item{border_size}{Border thickness. Default: 1.}
+
+\item{nudge_x}{Parameter of \code{\link{geom_text_repel}}. Default: 1.}
+
+\item{nudge_y}{Parameter of \code{\link{geom_text_repel}}. Default: 1.}
 }
 \value{
 A ggplot2 object.

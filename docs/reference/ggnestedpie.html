@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggpie</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.4</span>
       </span>
     </div>
 
@@ -149,18 +149,23 @@
   <span class='kw'>inner_label_info</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"count"</span>, <span class='st'>"ratio"</span>, <span class='st'>"all"</span>),
   <span class='kw'>inner_label_color</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
   <span class='kw'>inner_label_split</span> <span class='kw'>=</span> <span class='st'>"[[:space:]]+"</span>,
-  <span class='kw'>inner_labal_threshold</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>inner_label_len</span> <span class='kw'>=</span> <span class='fl'>40</span>,
+  <span class='kw'>inner_label_threshold</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>inner_label_size</span> <span class='kw'>=</span> <span class='fl'>4</span>,
   <span class='kw'>outer_fill_color</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>outer_label_type</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"circle"</span>, <span class='st'>"horizon"</span>, <span class='st'>"none"</span>),
   <span class='kw'>outer_label_pos</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"in"</span>, <span class='st'>"out"</span>),
   <span class='kw'>outer_label_info</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"count"</span>, <span class='st'>"ratio"</span>, <span class='st'>"all"</span>),
   <span class='kw'>outer_label_split</span> <span class='kw'>=</span> <span class='st'>"[[:space:]]+"</span>,
+  <span class='kw'>outer_label_len</span> <span class='kw'>=</span> <span class='fl'>40</span>,
   <span class='kw'>outer_label_color</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
   <span class='kw'>outer_label_gap</span> <span class='kw'>=</span> <span class='fl'>0.05</span>,
-  <span class='kw'>outer_labal_threshold</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>outer_label_threshold</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>outer_label_size</span> <span class='kw'>=</span> <span class='fl'>4</span>,
-  <span class='kw'>border_color</span> <span class='kw'>=</span> <span class='st'>"black"</span>
+  <span class='kw'>border_color</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
+  <span class='kw'>border_size</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+  <span class='kw'>outer_nudge_x</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+  <span class='kw'>outer_nudge_y</span> <span class='kw'>=</span> <span class='fl'>1</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -219,8 +224,12 @@
       <td><p>Pattern used to split the label of inner pie, support regular expression. Default: space.</p></td>
     </tr>
     <tr>
-      <th>inner_labal_threshold</th>
-      <td><p>Threashold of the ratio to determine label or not on inner pie. Default: NULL.</p></td>
+      <th>inner_label_len</th>
+      <td><p>Label text length of inner pie. Used when <code>inner_label_split</code> is NULL. Default: 40.</p></td>
+    </tr>
+    <tr>
+      <th>inner_label_threshold</th>
+      <td><p>Threshold of the ratio to determine label or not on inner pie. Default: NULL.</p></td>
     </tr>
     <tr>
       <th>inner_label_size</th>
@@ -247,6 +256,10 @@
       <td><p>Pattern used to split the label of outer pie, support regular expression. Default: space.</p></td>
     </tr>
     <tr>
+      <th>outer_label_len</th>
+      <td><p>Label text length of outer pie. Used when <code>outer_label_split</code> is NULL. Default: 40.</p></td>
+    </tr>
+    <tr>
       <th>outer_label_color</th>
       <td><p>Color of the label on outer pie. Default: black.</p></td>
     </tr>
@@ -255,8 +268,8 @@
       <td><p>Gap between label and outer pie plot, used when <code>outer_label_pos</code> is out.</p></td>
     </tr>
     <tr>
-      <th>outer_labal_threshold</th>
-      <td><p>Threashold of the ratio to determine label position (in/out pie). Default: NULL.</p></td>
+      <th>outer_label_threshold</th>
+      <td><p>Threshold of the ratio to determine label position (in/out pie). Default: NULL.</p></td>
     </tr>
     <tr>
       <th>outer_label_size</th>
@@ -265,6 +278,18 @@
     <tr>
       <th>border_color</th>
       <td><p>Border color. Default: black.</p></td>
+    </tr>
+    <tr>
+      <th>border_size</th>
+      <td><p>Border thickness. Default: 1.</p></td>
+    </tr>
+    <tr>
+      <th>outer_nudge_x</th>
+      <td><p>Parameter of <code>geom_text_repel</code>. Default: 1.</p></td>
+    </tr>
+    <tr>
+      <th>outer_nudge_y</th>
+      <td><p>Parameter of <code>geom_text_repel</code>. Default: 1.</p></td>
     </tr>
     </table>
 
@@ -285,7 +310,7 @@
 <span class='fu'>ggnestedpie</span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>diamonds</span>, <span class='kw'>group_key</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"cut"</span>, <span class='st'>"color"</span>), <span class='kw'>count_type</span> <span class='kw'>=</span> <span class='st'>"full"</span>,
   <span class='kw'>inner_label_info</span> <span class='kw'>=</span> <span class='st'>"all"</span>, <span class='kw'>inner_label_split</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>inner_labal_threshold</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>inner_label_size</span> <span class='kw'>=</span> <span class='fl'>3</span>,
+  <span class='kw'>inner_label_threshold</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>inner_label_size</span> <span class='kw'>=</span> <span class='fl'>3</span>,
   <span class='kw'>outer_label_type</span> <span class='kw'>=</span> <span class='st'>"circle"</span>, <span class='kw'>outer_label_pos</span> <span class='kw'>=</span> <span class='st'>"in"</span>, <span class='kw'>outer_label_info</span> <span class='kw'>=</span> <span class='st'>"all"</span>
 )</div><div class='output co'>#&gt; <span class='message'>Coordinate system already present. Adding new coordinate system, which will replace the existing one.</span></div><div class='img'><img src='ggnestedpie-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># inner circle label, outer circle label and out of pie plot</span>
 <span class='fu'>ggnestedpie</span>(
@@ -297,7 +322,7 @@
 <span class='fu'>ggnestedpie</span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>diamonds</span>, <span class='kw'>group_key</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"cut"</span>, <span class='st'>"color"</span>), <span class='kw'>count_type</span> <span class='kw'>=</span> <span class='st'>"full"</span>,
   <span class='kw'>inner_label_info</span> <span class='kw'>=</span> <span class='st'>"all"</span>, <span class='kw'>inner_label_split</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>inner_labal_threshold</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>inner_label_size</span> <span class='kw'>=</span> <span class='fl'>3</span>,
+  <span class='kw'>inner_label_threshold</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>inner_label_size</span> <span class='kw'>=</span> <span class='fl'>3</span>,
   <span class='kw'>outer_label_type</span> <span class='kw'>=</span> <span class='st'>"horizon"</span>, <span class='kw'>outer_label_pos</span> <span class='kw'>=</span> <span class='st'>"out"</span>, <span class='kw'>outer_label_info</span> <span class='kw'>=</span> <span class='st'>"all"</span>
 )</div><div class='output co'>#&gt; <span class='message'>Coordinate system already present. Adding new coordinate system, which will replace the existing one.</span></div><div class='img'><img src='ggnestedpie-4.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># inner circle label and no split, outer horizon label and in pie plot,</span>
 <span class='co'># remove fraction below 1 of inner pie,</span>
@@ -305,16 +330,16 @@
 <span class='fu'>ggnestedpie</span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>diamonds</span>, <span class='kw'>group_key</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"cut"</span>, <span class='st'>"color"</span>), <span class='kw'>count_type</span> <span class='kw'>=</span> <span class='st'>"full"</span>,
   <span class='kw'>inner_label_info</span> <span class='kw'>=</span> <span class='st'>"all"</span>, <span class='kw'>inner_label_split</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>inner_labal_threshold</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>inner_label_size</span> <span class='kw'>=</span> <span class='fl'>3</span>,
+  <span class='kw'>inner_label_threshold</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>inner_label_size</span> <span class='kw'>=</span> <span class='fl'>3</span>,
   <span class='kw'>outer_label_type</span> <span class='kw'>=</span> <span class='st'>"horizon"</span>, <span class='kw'>outer_label_pos</span> <span class='kw'>=</span> <span class='st'>"in"</span>,
-  <span class='kw'>outer_label_info</span> <span class='kw'>=</span> <span class='st'>"all"</span>, <span class='kw'>outer_labal_threshold</span> <span class='kw'>=</span> <span class='fl'>10</span>
+  <span class='kw'>outer_label_info</span> <span class='kw'>=</span> <span class='st'>"all"</span>, <span class='kw'>outer_label_threshold</span> <span class='kw'>=</span> <span class='fl'>10</span>
 )</div><div class='output co'>#&gt; <span class='message'>Coordinate system already present. Adding new coordinate system, which will replace the existing one.</span></div><div class='img'><img src='ggnestedpie-5.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># create blank between inner and outer pie</span>
 <span class='fu'>ggnestedpie</span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>diamonds</span>, <span class='kw'>group_key</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"cut"</span>, <span class='st'>"color"</span>), <span class='kw'>count_type</span> <span class='kw'>=</span> <span class='st'>"full"</span>, <span class='kw'>r0</span> <span class='kw'>=</span> <span class='fl'>0.5</span>, <span class='kw'>r1</span> <span class='kw'>=</span> <span class='fl'>1.5</span>, <span class='kw'>r2</span> <span class='kw'>=</span> <span class='fl'>2.6</span>,
   <span class='kw'>inner_label_info</span> <span class='kw'>=</span> <span class='st'>"all"</span>, <span class='kw'>inner_label_split</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>inner_labal_threshold</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>inner_label_size</span> <span class='kw'>=</span> <span class='fl'>3</span>,
+  <span class='kw'>inner_label_threshold</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>inner_label_size</span> <span class='kw'>=</span> <span class='fl'>3</span>,
   <span class='kw'>outer_label_type</span> <span class='kw'>=</span> <span class='st'>"horizon"</span>, <span class='kw'>outer_label_pos</span> <span class='kw'>=</span> <span class='st'>"in"</span>,
-  <span class='kw'>outer_label_info</span> <span class='kw'>=</span> <span class='st'>"all"</span>, <span class='kw'>outer_labal_threshold</span> <span class='kw'>=</span> <span class='fl'>10</span>
+  <span class='kw'>outer_label_info</span> <span class='kw'>=</span> <span class='st'>"all"</span>, <span class='kw'>outer_label_threshold</span> <span class='kw'>=</span> <span class='fl'>10</span>
 )</div><div class='output co'>#&gt; <span class='message'>Coordinate system already present. Adding new coordinate system, which will replace the existing one.</span></div><div class='img'><img src='ggnestedpie-6.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

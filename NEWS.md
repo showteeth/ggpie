@@ -1,6 +1,7 @@
 # ggpie 0.2.4
 * Added `label_len` to adjust the length of labels (Fix #2).
 * Corrected some spelling mistakes
+* Added `nudge_x` and `nudge_y` in `ggpie`, `ggdonut`, `ggnestedpie` to adjust the space between the label and the plot (Fix #3).
 
 -----------
 

@@ -32,7 +32,9 @@ ggnestedpie(
   outer_label_threshold = NULL,
   outer_label_size = 4,
   border_color = "black",
-  border_size = 1
+  border_size = 1,
+  outer_nudge_x = 1,
+  outer_nudge_y = 1
 )
 }
 \arguments{
@@ -91,6 +93,10 @@ ggnestedpie(
 \item{border_color}{Border color. Default: black.}
 
 \item{border_size}{Border thickness. Default: 1.}
+
+\item{outer_nudge_x}{Parameter of \code{\link{geom_text_repel}}. Default: 1.}
+
+\item{outer_nudge_y}{Parameter of \code{\link{geom_text_repel}}. Default: 1.}
 }
 \value{
 A ggplot2 object.

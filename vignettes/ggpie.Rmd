@@ -56,7 +56,7 @@ citation("ggpie")
 
 ## Usage
 ### Preapre data
-```{r prepare}
+```{r prepare, message=FALSE, warning=FALSE}
 library(ggpie)
 library(ggplot2)
 data(diamonds)
@@ -112,11 +112,11 @@ ggpie(data = diamonds, group_key = "cut", count_type = "full",
 ```
 
 #### adjust threashold
-With `labal_threshold`, `ggpie` will move label below `labal_threshold` to out of pie. In this example, all labels below 10% are moved to out of pie:
+With `label_threshold`, `ggpie` will move label below `label_threshold` to out of pie. In this example, all labels below 10% are moved to out of pie:
 ```{r pie_threashold_horizon_in}
 ggpie(data = diamonds, group_key = "cut", count_type = "full",
       label_info = "all", label_type = "horizon", label_split = NULL,
-      label_size = 4, label_pos = "in", labal_threshold = 10)
+      label_size = 4, label_pos = "in", label_threshold = 10)
 ```
 
 <hr />
@@ -173,18 +173,18 @@ ggdonut(data = diamonds, group_key = "cut", count_type = "full",
 ```
 
 #### adjust threashold
-With `labal_threshold`, `ggpie` will move label below `labal_threshold` to out of donut. In this example, all labels below 10% are moved to out of donut:
+With `label_threshold`, `ggpie` will move label below `label_threshold` to out of donut. In this example, all labels below 10% are moved to out of donut:
 ```{r donut_threashold_horizon_in}
 ggdonut(data = diamonds, group_key = "cut", count_type = "full",
         label_info = "all", label_type = "horizon", label_split = NULL,
-        label_size = 4, label_pos = "in", labal_threshold = 10)
+        label_size = 4, label_pos = "in", label_threshold = 10)
 ```
 
 
 ```{r donut_threashold_horizon_in_no_split}
 ggdonut(data = diamonds, group_key = "cut", count_type = "full",
         label_info = "all", label_type = "horizon",
-        label_size = 4, label_pos = "in", labal_threshold = 10)
+        label_size = 4, label_pos = "in", label_threshold = 10)
 ```
 
 <hr />
@@ -230,7 +230,7 @@ ggnestedpie(data = diamonds, group_key = c("cut", "color"), count_type = "full",
 ```{r nested_pie_inner_outer_circle_in_remove}
 ggnestedpie(data = diamonds, group_key = c("cut", "color"), count_type = "full",
             inner_label_info = "all", inner_label_split = NULL,
-            inner_labal_threshold = 5, inner_label_size = 2,
+            inner_label_threshold = 5, inner_label_size = 2,
             outer_label_type = "circle", outer_label_pos = "in", outer_label_info = "all")
 ```
 
@@ -246,7 +246,7 @@ ggnestedpie(data = diamonds, group_key = c("cut", "color"), count_type = "full",
 ```{r nested_pie_inner_outer_horizon_out_remove}
 ggnestedpie(data = diamonds, group_key = c("cut", "color"), count_type = "full",
             inner_label_info = "all", inner_label_split = NULL,
-            inner_labal_threshold = 1, inner_label_size = 2,
+            inner_label_threshold = 1, inner_label_size = 2,
             outer_label_type = "horizon", outer_label_pos = "out", outer_label_info = "all")
 ```
 
@@ -254,18 +254,18 @@ ggnestedpie(data = diamonds, group_key = c("cut", "color"), count_type = "full",
 ```{r nested_pie_inner_outer_remove_horizon_in_remove}
 ggnestedpie(data = diamonds, group_key = c("cut", "color"), count_type = "full",
             inner_label_info = "all", inner_label_split = NULL,
-            inner_labal_threshold = 1, inner_label_size = 2,
+            inner_label_threshold = 1, inner_label_size = 2,
             outer_label_type = "horizon", outer_label_pos = "in",
-            outer_label_info = "all", outer_labal_threshold = 10)
+            outer_label_info = "all", outer_label_threshold = 10)
 ```
 
 #### blank between plot
 ```{r nested_pie_blank_inner_outer}
 ggnestedpie(data = diamonds, group_key = c("cut", "color"), count_type = "full", 
             r0 = 0.5, r1 = 1.5, r2 = 2.6,inner_label_info = "all", inner_label_split = NULL,
-            inner_labal_threshold = 1, inner_label_size = 2,
+            inner_label_threshold = 1, inner_label_size = 2,
             outer_label_type = "horizon", outer_label_pos = "in",
-            outer_label_info = "all", outer_labal_threshold = 10)
+            outer_label_info = "all", outer_label_threshold = 10)
 ```
 
 <hr />

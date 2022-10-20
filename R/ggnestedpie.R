@@ -28,6 +28,8 @@
 #' @param outer_label_size Size of the label on outer pie. Default: 4.
 #' @param border_color Border color. Default: black.
 #' @param border_size Border thickness. Default: 1.
+#' @param outer_nudge_x Parameter of \code{\link{geom_text_repel}}. Default: 1.
+#' @param outer_nudge_y Parameter of \code{\link{geom_text_repel}}. Default: 1.
 #'
 #' @return A ggplot2 object.
 #' @importFrom dplyr group_by summarise select
@@ -97,7 +99,7 @@ ggnestedpie <- function(data, group_key = NULL, count_type = c("count", "full"),
                         outer_fill_color = NULL, outer_label_type = c("circle", "horizon", "none"), outer_label_pos = c("in", "out"),
                         outer_label_info = c("count", "ratio", "all"), outer_label_split = "[[:space:]]+", outer_label_len = 40, outer_label_color = "black",
                         outer_label_gap = 0.05, outer_label_threshold = NULL, outer_label_size = 4,
-                        border_color = "black", border_size = 1) {
+                        border_color = "black", border_size = 1, outer_nudge_x = 1, outer_nudge_y = 1) {
   # check parameters
   count_type <- match.arg(arg = count_type)
   inner_label_info <- match.arg(arg = inner_label_info)
@@ -344,7 +346,7 @@ ggnestedpie <- function(data, group_key = NULL, count_type = c("count", "full"),
           geom_text_repel(
             data = main_data,
             mapping = aes(label = label, y = CumSum, x = after_stat(r2), colour = group), show.legend = FALSE,
-            point.padding = NA, max.overlaps = Inf, nudge_x = 1, nudge_y = 1,
+            point.padding = NA, max.overlaps = Inf, nudge_x = outer_nudge_x, nudge_y = outer_nudge_y,
             segment.curvature = -0.2, segment.ncp = 10, segment.angle = 20, size = outer_label_size
           ) +
           coord_polar(theta = "y", start = 0, clip = "off") +
@@ -382,7 +384,7 @@ ggnestedpie <- function(data, group_key = NULL, count_type = c("count", "full"),
             geom_text_repel(
               data = main_data[main_data$count * 100 / sum(main_data$count) < outer_label_threshold, ],
               aes(label = label, y = CumSum, x = after_stat(r2), colour = group), show.legend = FALSE,
-              size = outer_label_size, point.padding = NA, max.overlaps = Inf, nudge_x = 1, nudge_y = 1,
+              size = outer_label_size, point.padding = NA, max.overlaps = Inf, nudge_x = outer_nudge_x, nudge_y = outer_nudge_y,
               segment.curvature = -0.2, segment.ncp = 10, segment.angle = 20
             ) +
             geom_text(

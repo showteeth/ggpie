@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggpie</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.4</span>
       </span>
     </div>
 
@@ -89,7 +89,7 @@
       <h1 data-toc-skip>ggpie</h1>
                         <h4 class="author">Yabing Song</h4>
             
-            <h4 class="date">2022-09-05</h4>
+            <h4 class="date">2022-10-20</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/showteeth/ggpie/blob/master/vignettes/ggpie.Rmd"><code>vignettes/ggpie.Rmd</code></a></small>
       <div class="hidden name"><code>ggpie.Rmd</code></div>
@@ -159,10 +159,6 @@
 <h3 class="hasAnchor">
 <a href="#preapre-data" class="anchor"></a>Preapre data</h3>
 <div class="sourceCode"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">ggpie</span>)
-<span class="co">#&gt; Warning: replacing previous import 'lifecycle::last_warnings' by</span>
-<span class="co">#&gt; 'rlang::last_warnings' when loading 'tibble'</span>
-<span class="co">#&gt; Warning: replacing previous import 'lifecycle::last_warnings' by</span>
-<span class="co">#&gt; 'rlang::last_warnings' when loading 'pillar'</span>
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">ggplot2</span>)
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="no">diamonds</span>)
 <span class="co"># check data used</span>
@@ -227,10 +223,10 @@
 <div id="adjust-threashold" class="section level4">
 <h4 class="hasAnchor">
 <a href="#adjust-threashold" class="anchor"></a>adjust threashold</h4>
-<p>With <code>labal_threshold</code>, <code>ggpie</code> will move label below <code>labal_threshold</code> to out of pie. In this example, all labels below 10% are moved to out of pie:</p>
+<p>With <code>label_threshold</code>, <code>ggpie</code> will move label below <code>label_threshold</code> to out of pie. In this example, all labels below 10% are moved to out of pie:</p>
 <div class="sourceCode"><html><body><pre class="r"><span class="fu"><a href="../reference/ggpie.html">ggpie</a></span>(<span class="kw">data</span> <span class="kw">=</span> <span class="no">diamonds</span>, <span class="kw">group_key</span> <span class="kw">=</span> <span class="st">"cut"</span>, <span class="kw">count_type</span> <span class="kw">=</span> <span class="st">"full"</span>,
       <span class="kw">label_info</span> <span class="kw">=</span> <span class="st">"all"</span>, <span class="kw">label_type</span> <span class="kw">=</span> <span class="st">"horizon"</span>, <span class="kw">label_split</span> <span class="kw">=</span> <span class="kw">NULL</span>,
-      <span class="kw">label_size</span> <span class="kw">=</span> <span class="fl">4</span>, <span class="kw">label_pos</span> <span class="kw">=</span> <span class="st">"in"</span>, <span class="kw">labal_threshold</span> <span class="kw">=</span> <span class="fl">10</span>)</pre></body></html></div>
+      <span class="kw">label_size</span> <span class="kw">=</span> <span class="fl">4</span>, <span class="kw">label_pos</span> <span class="kw">=</span> <span class="st">"in"</span>, <span class="kw">label_threshold</span> <span class="kw">=</span> <span class="fl">10</span>)</pre></body></html></div>
 <p><img src="ggpie_files/figure-html/pie_threashold_horizon_in-1.png" width="437.5"></p>
 <hr>
 </div>
@@ -286,14 +282,14 @@
 <div id="adjust-threashold-1" class="section level4">
 <h4 class="hasAnchor">
 <a href="#adjust-threashold-1" class="anchor"></a>adjust threashold</h4>
-<p>With <code>labal_threshold</code>, <code>ggpie</code> will move label below <code>labal_threshold</code> to out of donut. In this example, all labels below 10% are moved to out of donut:</p>
+<p>With <code>label_threshold</code>, <code>ggpie</code> will move label below <code>label_threshold</code> to out of donut. In this example, all labels below 10% are moved to out of donut:</p>
 <div class="sourceCode"><html><body><pre class="r"><span class="fu"><a href="../reference/ggdonut.html">ggdonut</a></span>(<span class="kw">data</span> <span class="kw">=</span> <span class="no">diamonds</span>, <span class="kw">group_key</span> <span class="kw">=</span> <span class="st">"cut"</span>, <span class="kw">count_type</span> <span class="kw">=</span> <span class="st">"full"</span>,
         <span class="kw">label_info</span> <span class="kw">=</span> <span class="st">"all"</span>, <span class="kw">label_type</span> <span class="kw">=</span> <span class="st">"horizon"</span>, <span class="kw">label_split</span> <span class="kw">=</span> <span class="kw">NULL</span>,
-        <span class="kw">label_size</span> <span class="kw">=</span> <span class="fl">4</span>, <span class="kw">label_pos</span> <span class="kw">=</span> <span class="st">"in"</span>, <span class="kw">labal_threshold</span> <span class="kw">=</span> <span class="fl">10</span>)</pre></body></html></div>
+        <span class="kw">label_size</span> <span class="kw">=</span> <span class="fl">4</span>, <span class="kw">label_pos</span> <span class="kw">=</span> <span class="st">"in"</span>, <span class="kw">label_threshold</span> <span class="kw">=</span> <span class="fl">10</span>)</pre></body></html></div>
 <p><img src="ggpie_files/figure-html/donut_threashold_horizon_in-1.png" width="437.5"></p>
 <div class="sourceCode"><html><body><pre class="r"><span class="fu"><a href="../reference/ggdonut.html">ggdonut</a></span>(<span class="kw">data</span> <span class="kw">=</span> <span class="no">diamonds</span>, <span class="kw">group_key</span> <span class="kw">=</span> <span class="st">"cut"</span>, <span class="kw">count_type</span> <span class="kw">=</span> <span class="st">"full"</span>,
         <span class="kw">label_info</span> <span class="kw">=</span> <span class="st">"all"</span>, <span class="kw">label_type</span> <span class="kw">=</span> <span class="st">"horizon"</span>,
-        <span class="kw">label_size</span> <span class="kw">=</span> <span class="fl">4</span>, <span class="kw">label_pos</span> <span class="kw">=</span> <span class="st">"in"</span>, <span class="kw">labal_threshold</span> <span class="kw">=</span> <span class="fl">10</span>)</pre></body></html></div>
+        <span class="kw">label_size</span> <span class="kw">=</span> <span class="fl">4</span>, <span class="kw">label_pos</span> <span class="kw">=</span> <span class="st">"in"</span>, <span class="kw">label_threshold</span> <span class="kw">=</span> <span class="fl">10</span>)</pre></body></html></div>
 <p><img src="ggpie_files/figure-html/donut_threashold_horizon_in_no_split-1.png" width="437.5"></p>
 <hr>
 </div>
@@ -339,7 +335,7 @@
 <p><strong>inner circle label</strong> and <strong>no split</strong>, <strong>outer circle label</strong> and <strong>in</strong> pie plot, <strong>remove fraction below 1 of inner pie</strong>:</p>
 <div class="sourceCode"><html><body><pre class="r"><span class="fu"><a href="../reference/ggnestedpie.html">ggnestedpie</a></span>(<span class="kw">data</span> <span class="kw">=</span> <span class="no">diamonds</span>, <span class="kw">group_key</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"cut"</span>, <span class="st">"color"</span>), <span class="kw">count_type</span> <span class="kw">=</span> <span class="st">"full"</span>,
             <span class="kw">inner_label_info</span> <span class="kw">=</span> <span class="st">"all"</span>, <span class="kw">inner_label_split</span> <span class="kw">=</span> <span class="kw">NULL</span>,
-            <span class="kw">inner_labal_threshold</span> <span class="kw">=</span> <span class="fl">5</span>, <span class="kw">inner_label_size</span> <span class="kw">=</span> <span class="fl">2</span>,
+            <span class="kw">inner_label_threshold</span> <span class="kw">=</span> <span class="fl">5</span>, <span class="kw">inner_label_size</span> <span class="kw">=</span> <span class="fl">2</span>,
             <span class="kw">outer_label_type</span> <span class="kw">=</span> <span class="st">"circle"</span>, <span class="kw">outer_label_pos</span> <span class="kw">=</span> <span class="st">"in"</span>, <span class="kw">outer_label_info</span> <span class="kw">=</span> <span class="st">"all"</span>)
 <span class="co">#&gt; Coordinate system already present. Adding new coordinate system, which will replace the existing one.</span></pre></body></html></div>
 <p><img src="ggpie_files/figure-html/nested_pie_inner_outer_circle_in_remove-1.png" width="437.5"></p>
@@ -356,16 +352,16 @@
 <p><strong>inner circle label</strong> and <strong>no split</strong>, <strong>outer horizon label</strong> and <strong>out</strong> of pie plot, <strong>remove fraction below 1 of inner pie</strong>:</p>
 <div class="sourceCode"><html><body><pre class="r"><span class="fu"><a href="../reference/ggnestedpie.html">ggnestedpie</a></span>(<span class="kw">data</span> <span class="kw">=</span> <span class="no">diamonds</span>, <span class="kw">group_key</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"cut"</span>, <span class="st">"color"</span>), <span class="kw">count_type</span> <span class="kw">=</span> <span class="st">"full"</span>,
             <span class="kw">inner_label_info</span> <span class="kw">=</span> <span class="st">"all"</span>, <span class="kw">inner_label_split</span> <span class="kw">=</span> <span class="kw">NULL</span>,
-            <span class="kw">inner_labal_threshold</span> <span class="kw">=</span> <span class="fl">1</span>, <span class="kw">inner_label_size</span> <span class="kw">=</span> <span class="fl">2</span>,
+            <span class="kw">inner_label_threshold</span> <span class="kw">=</span> <span class="fl">1</span>, <span class="kw">inner_label_size</span> <span class="kw">=</span> <span class="fl">2</span>,
             <span class="kw">outer_label_type</span> <span class="kw">=</span> <span class="st">"horizon"</span>, <span class="kw">outer_label_pos</span> <span class="kw">=</span> <span class="st">"out"</span>, <span class="kw">outer_label_info</span> <span class="kw">=</span> <span class="st">"all"</span>)
 <span class="co">#&gt; Coordinate system already present. Adding new coordinate system, which will replace the existing one.</span></pre></body></html></div>
 <p><img src="ggpie_files/figure-html/nested_pie_inner_outer_horizon_out_remove-1.png" width="437.5"></p>
 <p><strong>inner circle label</strong> and <strong>no split</strong>, <strong>outer horizon label</strong> and <strong>in</strong> pie plot, <strong>remove fraction below 1 of inner pie</strong>, <strong>adjust fraction below 10 to out of pie of outer pie plot</strong>:</p>
 <div class="sourceCode"><html><body><pre class="r"><span class="fu"><a href="../reference/ggnestedpie.html">ggnestedpie</a></span>(<span class="kw">data</span> <span class="kw">=</span> <span class="no">diamonds</span>, <span class="kw">group_key</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"cut"</span>, <span class="st">"color"</span>), <span class="kw">count_type</span> <span class="kw">=</span> <span class="st">"full"</span>,
             <span class="kw">inner_label_info</span> <span class="kw">=</span> <span class="st">"all"</span>, <span class="kw">inner_label_split</span> <span class="kw">=</span> <span class="kw">NULL</span>,
-            <span class="kw">inner_labal_threshold</span> <span class="kw">=</span> <span class="fl">1</span>, <span class="kw">inner_label_size</span> <span class="kw">=</span> <span class="fl">2</span>,
+            <span class="kw">inner_label_threshold</span> <span class="kw">=</span> <span class="fl">1</span>, <span class="kw">inner_label_size</span> <span class="kw">=</span> <span class="fl">2</span>,
             <span class="kw">outer_label_type</span> <span class="kw">=</span> <span class="st">"horizon"</span>, <span class="kw">outer_label_pos</span> <span class="kw">=</span> <span class="st">"in"</span>,
-            <span class="kw">outer_label_info</span> <span class="kw">=</span> <span class="st">"all"</span>, <span class="kw">outer_labal_threshold</span> <span class="kw">=</span> <span class="fl">10</span>)
+            <span class="kw">outer_label_info</span> <span class="kw">=</span> <span class="st">"all"</span>, <span class="kw">outer_label_threshold</span> <span class="kw">=</span> <span class="fl">10</span>)
 <span class="co">#&gt; Coordinate system already present. Adding new coordinate system, which will replace the existing one.</span></pre></body></html></div>
 <p><img src="ggpie_files/figure-html/nested_pie_inner_outer_remove_horizon_in_remove-1.png" width="437.5"></p>
 </div>
@@ -374,9 +370,9 @@
 <a href="#blank-between-plot" class="anchor"></a>blank between plot</h4>
 <div class="sourceCode"><html><body><pre class="r"><span class="fu"><a href="../reference/ggnestedpie.html">ggnestedpie</a></span>(<span class="kw">data</span> <span class="kw">=</span> <span class="no">diamonds</span>, <span class="kw">group_key</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"cut"</span>, <span class="st">"color"</span>), <span class="kw">count_type</span> <span class="kw">=</span> <span class="st">"full"</span>,
             <span class="kw">r0</span> <span class="kw">=</span> <span class="fl">0.5</span>, <span class="kw">r1</span> <span class="kw">=</span> <span class="fl">1.5</span>, <span class="kw">r2</span> <span class="kw">=</span> <span class="fl">2.6</span>,<span class="kw">inner_label_info</span> <span class="kw">=</span> <span class="st">"all"</span>, <span class="kw">inner_label_split</span> <span class="kw">=</span> <span class="kw">NULL</span>,
-            <span class="kw">inner_labal_threshold</span> <span class="kw">=</span> <span class="fl">1</span>, <span class="kw">inner_label_size</span> <span class="kw">=</span> <span class="fl">2</span>,
+            <span class="kw">inner_label_threshold</span> <span class="kw">=</span> <span class="fl">1</span>, <span class="kw">inner_label_size</span> <span class="kw">=</span> <span class="fl">2</span>,
             <span class="kw">outer_label_type</span> <span class="kw">=</span> <span class="st">"horizon"</span>, <span class="kw">outer_label_pos</span> <span class="kw">=</span> <span class="st">"in"</span>,
-            <span class="kw">outer_label_info</span> <span class="kw">=</span> <span class="st">"all"</span>, <span class="kw">outer_labal_threshold</span> <span class="kw">=</span> <span class="fl">10</span>)
+            <span class="kw">outer_label_info</span> <span class="kw">=</span> <span class="st">"all"</span>, <span class="kw">outer_label_threshold</span> <span class="kw">=</span> <span class="fl">10</span>)
 <span class="co">#&gt; Coordinate system already present. Adding new coordinate system, which will replace the existing one.</span></pre></body></html></div>
 <p><img src="ggpie_files/figure-html/nested_pie_blank_inner_outer-1.png" width="437.5"></p>
 <hr>

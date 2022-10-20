@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggpie</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.4</span>
       </span>
     </div>
 
@@ -141,6 +141,8 @@
   <span class='kw'>count_type</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"count"</span>, <span class='st'>"full"</span>),
   <span class='kw'>fill_color</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>label_info</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"count"</span>, <span class='st'>"ratio"</span>, <span class='st'>"all"</span>),
+  <span class='kw'>label_split</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>label_len</span> <span class='kw'>=</span> <span class='fl'>40</span>,
   <span class='kw'>label_color</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
   <span class='kw'>sort</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>show_tick</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
@@ -153,7 +155,8 @@
   <span class='kw'>donut_label</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>donut_label_size</span> <span class='kw'>=</span> <span class='fl'>4</span>,
   <span class='kw'>donut_label_color</span> <span class='kw'>=</span> <span class='st'>"red"</span>,
-  <span class='kw'>border_color</span> <span class='kw'>=</span> <span class='st'>"black"</span>
+  <span class='kw'>border_color</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
+  <span class='kw'>border_size</span> <span class='kw'>=</span> <span class='fl'>1</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -178,6 +181,14 @@
     <tr>
       <th>label_info</th>
       <td><p>Label information type, chosen from count, ratio and all (count and ratio). Default: count.</p></td>
+    </tr>
+    <tr>
+      <th>label_split</th>
+      <td><p>Pattern used to split the label, support regular expression. Default: NULL.</p></td>
+    </tr>
+    <tr>
+      <th>label_len</th>
+      <td><p>The length of label text. Used when <code>label_split</code> is NULL. Default: 40.</p></td>
     </tr>
     <tr>
       <th>label_color</th>
@@ -230,6 +241,10 @@
     <tr>
       <th>border_color</th>
       <td><p>Border color. Default: black.</p></td>
+    </tr>
+    <tr>
+      <th>border_size</th>
+      <td><p>Border thickness. Default: 1.</p></td>
     </tr>
     </table>
 

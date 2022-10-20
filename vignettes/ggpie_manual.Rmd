@@ -34,19 +34,19 @@ One of the advantages of [ggpie](https://github.com/showteeth/ggpie) is the opti
 ### Installation
 You can install the released version of `ggpie` from [CRAN](https://cran.r-project.org/web/packages/ggpie/index.html) with:
 
-```{r install_with_cran}
+```{r install_with_cran, eval=FALSE, message=FALSE, warning=FALSE}
 install.packages("ggpie")
 ```
 
 Or install the package via the [Github repository](https://github.com/showteeth/ggpie):
 
-```{r install_with_gtihub}
+```{r install_with_gtihub, eval=FALSE, message=FALSE, warning=FALSE}
 # install.package("remotes")   #In case you have not installed it.
 remotes::install_github("showteeth/ggpie")
 ```
 
 Load `ggpie`:
-```{r load_ggpie}
+```{r load_ggpie, message=FALSE, warning=FALSE}
 library(ggpie)
 ```
 
@@ -72,7 +72,7 @@ Create a pie plot with **mixture label**:
 ```{r pie_horizontal_label_mixture}
 ggpie(data = diamonds, group_key = "cut", count_type = "full",
       label_info = "all", label_type = "horizon", label_split = NULL,
-      label_size = 4, label_pos = "in", labal_threshold = 10)
+      label_size = 4, label_pos = "in", label_threshold = 10)
 ```
 
 -----------------------
@@ -154,7 +154,7 @@ Create a donut plot with **mixture label**:
 ```{r donut_horizontal_label_mixture}
 ggdonut(data = diamonds, group_key = "cut", count_type = "full",
         label_info = "all", label_type = "horizon",
-        label_size = 4, label_pos = "in", labal_threshold = 10)
+        label_size = 4, label_pos = "in", label_threshold = 10)
 ```
 
 -----------------------
@@ -191,7 +191,7 @@ ggnestedpie(data = diamonds, group_key = c("cut", "color"), count_type = "full",
 ```{r nested_pie_inner_outer_circle_in_remove}
 ggnestedpie(data = diamonds, group_key = c("cut", "color"), count_type = "full",
             inner_label_info = "all", inner_label_split = NULL,
-            inner_labal_threshold = 5, inner_label_size = 2,
+            inner_label_threshold = 5, inner_label_size = 2,
             outer_label_type = "circle", outer_label_pos = "in", outer_label_info = "all")
 ```
 
@@ -209,7 +209,7 @@ ggnestedpie(data = diamonds, group_key = c("cut", "color"), count_type = "full",
 ```{r nested_pie_inner_outer_horizon_out_remove}
 ggnestedpie(data = diamonds, group_key = c("cut", "color"), count_type = "full",
             inner_label_info = "all", inner_label_split = NULL,
-            inner_labal_threshold = 1, inner_label_size = 2,
+            inner_label_threshold = 1, inner_label_size = 2,
             outer_label_type = "horizon", outer_label_pos = "out", outer_label_info = "all")
 ```
 
@@ -217,9 +217,9 @@ ggnestedpie(data = diamonds, group_key = c("cut", "color"), count_type = "full",
 ```{r nested_pie_inner_outer_remove_horizon_in_remove}
 ggnestedpie(data = diamonds, group_key = c("cut", "color"), count_type = "full",
             inner_label_info = "all", inner_label_split = NULL,
-            inner_labal_threshold = 1, inner_label_size = 2,
+            inner_label_threshold = 1, inner_label_size = 2,
             outer_label_type = "horizon", outer_label_pos = "in",
-            outer_label_info = "all", outer_labal_threshold = 10)
+            outer_label_info = "all", outer_label_threshold = 10)
 ```
 
 -----------------------
@@ -229,9 +229,9 @@ Add blank between inner and outer plot:
 ```{r nested_pie_blank_inner_outer}
 ggnestedpie(data = diamonds, group_key = c("cut", "color"), count_type = "full", 
             r0 = 0.5, r1 = 1.5, r2 = 2.6,inner_label_info = "all", inner_label_split = NULL,
-            inner_labal_threshold = 1, inner_label_size = 2,
+            inner_label_threshold = 1, inner_label_size = 2,
             outer_label_type = "horizon", outer_label_pos = "in",
-            outer_label_info = "all", outer_labal_threshold = 10)
+            outer_label_info = "all", outer_label_threshold = 10)
 ```
 
 -----------------------

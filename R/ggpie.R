@@ -15,6 +15,8 @@
 #' @param label_color Color of the label. Default: black.
 #' @param border_color Border color. Default: black.
 #' @param border_size Border thickness. Default: 1.
+#' @param nudge_x Parameter of \code{\link{geom_text_repel}}. Default: 1.
+#' @param nudge_y Parameter of \code{\link{geom_text_repel}}. Default: 1.
 #'
 #' @return A ggplot2 object.
 #' @importFrom dplyr mutate group_by summarise n
@@ -76,7 +78,8 @@
 ggpie <- function(data, group_key = NULL, count_type = c("count", "full"), fill_color = NULL, label_info = c("count", "ratio", "all"),
                   label_split = "[[:space:]]+", label_len = 40, label_color = "black",
                   label_type = c("circle", "horizon", "none"), label_pos = c("in", "out"), label_gap = 0.05,
-                  label_threshold = NULL, label_size = 4, border_color = "black", border_size = 1) {
+                  label_threshold = NULL, label_size = 4, border_color = "black", border_size = 1,
+                  nudge_x = 1, nudge_y = 1) {
   # check parameters
   count_type <- match.arg(arg = count_type)
   label_info <- match.arg(arg = label_info)
@@ -135,7 +138,7 @@ ggpie <- function(data, group_key = NULL, count_type = c("count", "full"), fill_
         geom_text_repel(
           data = data,
           aes(label = label, y = CumFreq, x = after_stat(1.5), colour = group), show.legend = FALSE,
-          point.padding = NA, max.overlaps = Inf, nudge_x = 1, nudge_y = 1,
+          point.padding = NA, max.overlaps = Inf, nudge_x = nudge_x, nudge_y = nudge_y,
           segment.curvature = -0.2, segment.ncp = 10, segment.angle = 20
         ) +
         coord_polar(theta = "y", start = 0, clip = "off") +
@@ -162,7 +165,7 @@ ggpie <- function(data, group_key = NULL, count_type = c("count", "full"), fill_
           geom_text_repel(
             data = data[data$Freq < label_threshold, ],
             aes(label = label, y = CumFreq, x = after_stat(1.5), colour = group), show.legend = FALSE,
-            size = label_size, point.padding = NA, max.overlaps = Inf, nudge_x = 1, nudge_y = 1,
+            size = label_size, point.padding = NA, max.overlaps = Inf, nudge_x = nudge_x, nudge_y = nudge_y,
             segment.curvature = -0.2, segment.ncp = 10, segment.angle = 20
           ) +
           geom_text(

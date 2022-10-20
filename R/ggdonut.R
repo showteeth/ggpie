@@ -20,6 +20,8 @@
 #' @param donut.label Logical value, whether to show total number in the center of the plot. Default: TRUE.
 #' @param donut.label.size The label size of center label. Default: 4.
 #' @param donut.label.color The color of center label. Default: red.
+#' @param nudge_x Parameter of \code{\link{geom_text_repel}}. Default: 1.
+#' @param nudge_y Parameter of \code{\link{geom_text_repel}}. Default: 1.
 #'
 #' @return A ggplot2 object.
 #' @importFrom dplyr mutate group_by summarise n
@@ -89,7 +91,8 @@ ggdonut <- function(data, group_key = NULL, count_type = c("count", "full"), fil
                     label_split = "[[:space:]]+", label_len = 40, label_color = "black",
                     label_type = c("circle", "horizon", "none"), label_pos = c("in", "out"), label_gap = 0.05,
                     label_threshold = NULL, label_size = 4, border_color = "black", border_size = 1,
-                    r0 = 1, r1 = 3, donut.label = TRUE, donut.label.size = 4, donut.label.color = "red") {
+                    r0 = 1, r1 = 3, donut.label = TRUE, donut.label.size = 4, donut.label.color = "red",
+                    nudge_x = 1, nudge_y = 1) {
   # check parameters
   count_type <- match.arg(arg = count_type)
   label_info <- match.arg(arg = label_info)
@@ -157,7 +160,7 @@ ggdonut <- function(data, group_key = NULL, count_type = c("count", "full"), fil
         geom_text_repel(
           data = data,
           mapping = aes(label = label, y = CumFreq, x = after_stat(r1), colour = group), show.legend = FALSE,
-          size = label_size, point.padding = NA, max.overlaps = Inf, nudge_x = 1, nudge_y = 1,
+          size = label_size, point.padding = NA, max.overlaps = Inf, nudge_x = nudge_x, nudge_y = nudge_y,
           segment.curvature = -0.2, segment.ncp = 10, segment.angle = 20
         ) +
         coord_polar(theta = "y", start = 0, clip = "off") +
@@ -191,7 +194,7 @@ ggdonut <- function(data, group_key = NULL, count_type = c("count", "full"), fil
           geom_text_repel(
             data = data[data$Freq < label_threshold, ],
             aes(label = label, y = CumFreq, x = after_stat(r1), colour = group), show.legend = FALSE,
-            size = label_size, point.padding = NA, max.overlaps = Inf, nudge_x = 1, nudge_y = 1,
+            size = label_size, point.padding = NA, max.overlaps = Inf, nudge_x = nudge_x, nudge_y = nudge_y,
             segment.curvature = -0.2, segment.ncp = 10, segment.angle = 20
           ) +
           geom_text(

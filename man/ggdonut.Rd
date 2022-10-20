@@ -24,7 +24,9 @@ ggdonut(
   r1 = 3,
   donut.label = TRUE,
   donut.label.size = 4,
-  donut.label.color = "red"
+  donut.label.color = "red",
+  nudge_x = 1,
+  nudge_y = 1
 )
 }
 \arguments{
@@ -67,6 +69,10 @@ ggdonut(
 \item{donut.label.size}{The label size of center label. Default: 4.}
 
 \item{donut.label.color}{The color of center label. Default: red.}
+
+\item{nudge_x}{Parameter of \code{\link{geom_text_repel}}. Default: 1.}
+
+\item{nudge_y}{Parameter of \code{\link{geom_text_repel}}. Default: 1.}
 }
 \value{
 A ggplot2 object.

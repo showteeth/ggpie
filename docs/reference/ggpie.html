@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggpie</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.4</span>
       </span>
     </div>
 
@@ -142,13 +142,17 @@
   <span class='kw'>fill_color</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>label_info</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"count"</span>, <span class='st'>"ratio"</span>, <span class='st'>"all"</span>),
   <span class='kw'>label_split</span> <span class='kw'>=</span> <span class='st'>"[[:space:]]+"</span>,
+  <span class='kw'>label_len</span> <span class='kw'>=</span> <span class='fl'>40</span>,
   <span class='kw'>label_color</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
   <span class='kw'>label_type</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"circle"</span>, <span class='st'>"horizon"</span>, <span class='st'>"none"</span>),
   <span class='kw'>label_pos</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"in"</span>, <span class='st'>"out"</span>),
   <span class='kw'>label_gap</span> <span class='kw'>=</span> <span class='fl'>0.05</span>,
-  <span class='kw'>labal_threshold</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>label_threshold</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>label_size</span> <span class='kw'>=</span> <span class='fl'>4</span>,
-  <span class='kw'>border_color</span> <span class='kw'>=</span> <span class='st'>"black"</span>
+  <span class='kw'>border_color</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
+  <span class='kw'>border_size</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+  <span class='kw'>nudge_x</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+  <span class='kw'>nudge_y</span> <span class='kw'>=</span> <span class='fl'>1</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -179,6 +183,10 @@
       <td><p>Pattern used to split the label, support regular expression. Default: space.</p></td>
     </tr>
     <tr>
+      <th>label_len</th>
+      <td><p>The length of label text. Used when <code>label_split</code> is NULL. Default: 40.</p></td>
+    </tr>
+    <tr>
       <th>label_color</th>
       <td><p>Color of the label. Default: black.</p></td>
     </tr>
@@ -195,8 +203,8 @@
       <td><p>Gap between label and pie plot, used when <code>label_pos</code> is out.</p></td>
     </tr>
     <tr>
-      <th>labal_threshold</th>
-      <td><p>Threashold of the ratio to determine label position (in/out pie). Default: NULL.</p></td>
+      <th>label_threshold</th>
+      <td><p>Threshold of the ratio to determine label position (in/out pie). Default: NULL.</p></td>
     </tr>
     <tr>
       <th>label_size</th>
@@ -205,6 +213,18 @@
     <tr>
       <th>border_color</th>
       <td><p>Border color. Default: black.</p></td>
+    </tr>
+    <tr>
+      <th>border_size</th>
+      <td><p>Border thickness. Default: 1.</p></td>
+    </tr>
+    <tr>
+      <th>nudge_x</th>
+      <td><p>Parameter of <code>geom_text_repel</code>. Default: 1.</p></td>
+    </tr>
+    <tr>
+      <th>nudge_y</th>
+      <td><p>Parameter of <code>geom_text_repel</code>. Default: 1.</p></td>
     </tr>
     </table>
 
@@ -245,11 +265,11 @@
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>diamonds</span>, <span class='kw'>group_key</span> <span class='kw'>=</span> <span class='st'>"cut"</span>, <span class='kw'>count_type</span> <span class='kw'>=</span> <span class='st'>"full"</span>,
   <span class='kw'>label_info</span> <span class='kw'>=</span> <span class='st'>"all"</span>, <span class='kw'>label_type</span> <span class='kw'>=</span> <span class='st'>"horizon"</span>, <span class='kw'>label_split</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>label_size</span> <span class='kw'>=</span> <span class='fl'>4</span>, <span class='kw'>label_pos</span> <span class='kw'>=</span> <span class='st'>"out"</span>
-)</div><div class='img'><img src='ggpie-6.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># with label threashold</span>
+)</div><div class='img'><img src='ggpie-6.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># with label threshold</span>
 <span class='fu'>ggpie</span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>diamonds</span>, <span class='kw'>group_key</span> <span class='kw'>=</span> <span class='st'>"cut"</span>, <span class='kw'>count_type</span> <span class='kw'>=</span> <span class='st'>"full"</span>,
   <span class='kw'>label_info</span> <span class='kw'>=</span> <span class='st'>"all"</span>, <span class='kw'>label_type</span> <span class='kw'>=</span> <span class='st'>"horizon"</span>, <span class='kw'>label_split</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>label_size</span> <span class='kw'>=</span> <span class='fl'>4</span>, <span class='kw'>label_pos</span> <span class='kw'>=</span> <span class='st'>"in"</span>, <span class='kw'>labal_threshold</span> <span class='kw'>=</span> <span class='fl'>10</span>
+  <span class='kw'>label_size</span> <span class='kw'>=</span> <span class='fl'>4</span>, <span class='kw'>label_pos</span> <span class='kw'>=</span> <span class='st'>"in"</span>, <span class='kw'>label_threshold</span> <span class='kw'>=</span> <span class='fl'>10</span>
 )</div><div class='img'><img src='ggpie-7.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
