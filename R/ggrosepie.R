@@ -30,6 +30,7 @@
 #' @importFrom grDevices colorRampPalette
 #' @importFrom RColorBrewer brewer.pal
 #' @importFrom scales percent extended_breaks
+#' @importFrom stringr str_wrap
 #' @importFrom stats median
 #' @import ggplot2
 #'
@@ -83,7 +84,7 @@ ggrosepie <- function(data, group_key = NULL, count_type = c("count", "full"), f
   if (length(group_key) == 1) {
     plot.data <- PrepareData(
       data = data, group_key = group_key, count_type = count_type, fill_color = fill_color,
-      label_info = label_info, label_split = label_split, label_len = label_len, label_color = label_color
+      label_info = label_info, label_split = NULL, label_len = NULL, label_color = label_color
     )
     data <- plot.data[["data"]]
     fill_color <- plot.data[["fill_color"]]
@@ -172,6 +173,14 @@ ggrosepie <- function(data, group_key = NULL, count_type = c("count", "full"), f
           label_df$label <- paste0(label_df$Sum, " (", scales::percent(label_df$Sum / sum(label_df$Sum)), ")")
         }
         label_df$label <- paste(label_df$group, label_df$label, sep = label_sep)
+        # split label or specify label length
+        if (!is.null(label_split)) {
+          label_df$label <- gsub(pattern = label_split, replacement = "\n", x = label_df$label)
+        } else {
+          if (!is.null(label_len)) {
+            label_df$label <- stringr::str_wrap(label_df$label, width = label_len)
+          }
+        }
         # calculate angle
         label_df$id <- 1:nrow(label_df)
         angle <- 90 - 360 * (label_df$id - 0.5) / nrow(label_df) - start_pi * 60
@@ -245,6 +254,14 @@ ggrosepie <- function(data, group_key = NULL, count_type = c("count", "full"), f
           label_df$label <- paste0(label_df$Sum, " (", scales::percent(label_df$Sum / sum(label_df$Sum)), ")")
         }
         label_df$label <- paste(label_df$group, label_df$label, sep = label_sep)
+        # split label or specify label length
+        if (!is.null(label_split)) {
+          label_df$label <- gsub(pattern = label_split, replacement = "\n", x = label_df$label)
+        } else {
+          if (!is.null(label_len)) {
+            label_df$label <- stringr::str_wrap(label_df$label, width = label_len)
+          }
+        }
         # calculate angle
         label_df$id <- 1:nrow(label_df)
         angle <- 90 - 360 * (label_df$id - 0.5) / nrow(label_df)
@@ -384,6 +401,14 @@ ggrosepie <- function(data, group_key = NULL, count_type = c("count", "full"), f
             label_df$label <- paste0(label_df$Sum, " (", scales::percent(label_df$Sum / sum(label_df$Sum)), ")")
           }
           label_df$label <- paste(label_df$group, label_df$label, sep = label_sep)
+          # split label or specify label length
+          if (!is.null(label_split)) {
+            label_df$label <- gsub(pattern = label_split, replacement = "\n", x = label_df$label)
+          } else {
+            if (!is.null(label_len)) {
+              label_df$label <- stringr::str_wrap(label_df$label, width = label_len)
+            }
+          }
           # calculate angle
           label_df$id <- 1:nrow(label_df)
           angle <- 90 - 360 * (label_df$id - 0.5) / nrow(label_df) - start_pi * 60
@@ -456,6 +481,14 @@ ggrosepie <- function(data, group_key = NULL, count_type = c("count", "full"), f
             label_df$label <- paste0(label_df$Sum, " (", scales::percent(label_df$Sum / sum(label_df$Sum)), ")")
           }
           label_df$label <- paste(label_df$group, label_df$label, sep = label_sep)
+          # split label or specify label length
+          if (!is.null(label_split)) {
+            label_df$label <- gsub(pattern = label_split, replacement = "\n", x = label_df$label)
+          } else {
+            if (!is.null(label_len)) {
+              label_df$label <- stringr::str_wrap(label_df$label, width = label_len)
+            }
+          }
           # calculate angle
           label_df$id <- 1:nrow(label_df)
           angle <- 90 - 360 * (label_df$id - 0.5) / nrow(label_df)
