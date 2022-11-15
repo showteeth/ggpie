@@ -1,7 +1,7 @@
 Package: ggpie
 Type: Package
 Title: Pie, Donut and Rose Pie Plots
-Version: 0.2.4
+Version: 0.2.5
 Authors@R: 
     person(given = "Yabing",
            family = "Song",
@@ -25,9 +25,10 @@ Imports:
     magrittr,
     rlang,
     utils,
-    cowplot,
     stringr
 Suggests: 
     rmarkdown,
+    cowplot,
+    prettydoc,
     knitr
 VignetteBuilder: knitr
