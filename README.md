@@ -45,7 +45,7 @@ citation("ggpie")
 #> To cite ggpie in publications use:
 #> 
 #>   Yabing Song (2022). ggpie: Create Pie, Donut and Rose Pie Plot with
-#>   'ggplot2'. R package version 0.2.2.
+#>   'ggplot2'. R package version 0.2.5.
 #>   https://CRAN.R-project.org/package=ggpie
 #> 
 #> A BibTeX entry for LaTeX users is
@@ -53,7 +53,7 @@ citation("ggpie")
 #>   @Manual{,
 #>     title = {ggpie: Create Pie, Donut and Rose Pie Plot with 'ggplot2'.},
 #>     author = {Yabing Song},
-#>     note = {R package version 0.2.2},
+#>     note = {R package version 0.2.5},
 #>     year = {2022},
 #>     url = {https://CRAN.R-project.org/package=ggpie},
 #>   }

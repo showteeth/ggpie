@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggpie</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.5</span>
       </span>
     </div>
 
@@ -147,7 +147,7 @@
   <span class='kw'>camera_eye</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>3</span>, <span class='fl'>5</span>),
   <span class='kw'>camera_look_at</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>0</span>, <span class='fl'>0</span>),
   <span class='kw'>show_label</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>label_info</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"count"</span>, <span class='st'>"ratio"</span>, <span class='st'>"all"</span>),
+  <span class='kw'>label_info</span> <span class='kw'>=</span> <span class='st'>"count"</span>,
   <span class='kw'>label_split</span> <span class='kw'>=</span> <span class='st'>"[[:space:]]+"</span>,
   <span class='kw'>label_len</span> <span class='kw'>=</span> <span class='fl'>40</span>,
   <span class='kw'>label_size</span> <span class='kw'>=</span> <span class='fl'>4</span>
@@ -202,7 +202,8 @@
     </tr>
     <tr>
       <th>label_info</th>
-      <td><p>Label information type, chosen from count, ratio and all (count and ratio). Default: count.</p></td>
+      <td><p>Label information type, combine from group, count, ratio.
+For example, use "count" , "ratio" will show count and ratio, count is main label info, ratio is in brackets. Default: count.</p></td>
     </tr>
     <tr>
       <th>label_split</th>
@@ -228,9 +229,9 @@
 <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>diamonds</span>)
 <span class='fu'>ggpie3D</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>diamonds</span>, <span class='kw'>group_key</span> <span class='kw'>=</span> <span class='st'>"cut"</span>, <span class='kw'>count_type</span> <span class='kw'>=</span> <span class='st'>"full"</span>, <span class='kw'>tilt_degrees</span> <span class='kw'>=</span> -<span class='fl'>10</span>)</div><div class='img'><img src='ggpie3D-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>ggpie3D</span>(
   <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>mtcars</span>, <span class='kw'>group_key</span> <span class='kw'>=</span> <span class='st'>"cyl"</span>, <span class='kw'>count_type</span> <span class='kw'>=</span> <span class='st'>"full"</span>,
-  <span class='kw'>tilt_degrees</span> <span class='kw'>=</span> -<span class='fl'>10</span>, <span class='kw'>start_degrees</span> <span class='kw'>=</span> <span class='fl'>0</span>
+  <span class='kw'>tilt_degrees</span> <span class='kw'>=</span> -<span class='fl'>10</span>, <span class='kw'>start_degrees</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>label_info</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"count"</span>, <span class='st'>"ratio"</span>)
 )</div><div class='img'><img src='ggpie3D-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='no'>data</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(<span class='kw'>group</span> <span class='kw'>=</span> <span class='no'>letters</span>[<span class='fl'>1</span>:<span class='fl'>5</span>], <span class='kw'>count</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>3</span>, <span class='fl'>1</span>, <span class='fl'>1</span>), <span class='kw'>stringsAsFactors</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
-<span class='fu'>ggpie3D</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>data</span>, <span class='kw'>start_degrees</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>label_split</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</div><div class='img'><img src='ggpie3D-3.png' alt='' width='700' height='433' /></div></pre>
+<span class='fu'>ggpie3D</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>data</span>, <span class='kw'>start_degrees</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>label_split</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>label_info</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"count"</span>, <span class='st'>"ratio"</span>))</div><div class='img'><img src='ggpie3D-3.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

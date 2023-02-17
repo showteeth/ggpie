@@ -37,7 +37,7 @@ ggrosepie(
 
 \item{fill_color}{Colors used. When length of \code{group_key} is two, color the subgroup, otherwise the main group. Default: NULL (conduct automatic selection).}
 
-\item{label_info}{Label information type, chosen from count, ratio and all (count and ratio). Default: count.}
+\item{label_info}{Label information type of outer pie plot, chosen from count, ratio and all (count and ratio). Default: count.}
 
 \item{label_split}{Pattern used to split the label, support regular expression. Default: NULL.}
 

@@ -1,8 +1,7 @@
-PrepareData <- function(data, group_key = NULL, count_type = c("count", "full"), fill_color = NULL, label_info = c("count", "ratio", "all"),
+PrepareData <- function(data, group_key = NULL, count_type = c("count", "full"), fill_color = NULL, label_info = c("group", "count", "ratio"),
                         label_split = "[[:space:]]+", label_len = 40, label_color = "black") {
   # check parameters
   count_type <- match.arg(arg = count_type)
-  label_info <- match.arg(arg = label_info)
 
   # create plot data frame
   ## get group key
@@ -33,14 +32,27 @@ PrepareData <- function(data, group_key = NULL, count_type = c("count", "full"),
       stop("count column is missing in your data.")
     }
   }
+
   # create label
-  if (label_info == "count") {
-    data$label <- as.character(data$count)
-  } else if (label_info == "ratio") {
-    data$label <- as.character(scales::percent(data$count / sum(data$count)))
-  } else if (label_info == "all") {
-    data$label <- paste0(data$count, " (", scales::percent(data$count / sum(data$count)), ")")
+  valid_label_info <- intersect(c("group", "count", "ratio"), label_info)
+  if (length(valid_label_info) < 1) {
+    stop("Please provide valid label_info, choose from 'group', 'count', 'ratio'.")
+  } else {
+    label_list <- list(
+      count = as.character(data$count),
+      ratio = as.character(scales::percent(data$count / sum(data$count))),
+      group = as.character(data$group)
+    )
+    if (length(valid_label_info) == 1) {
+      label_vec <- label_list[[valid_label_info]]
+    } else if (length(valid_label_info) == 2) {
+      label_vec <- paste0(label_list[[valid_label_info[1]]], " (", label_list[[valid_label_info[2]]], ")")
+    } else if (length(valid_label_info) == 3) {
+      label_vec <- paste0(label_list[[valid_label_info[1]]], " (", paste(label_list[[valid_label_info[2]]], label_list[[valid_label_info[3]]], sep = " ,"), ")")
+    }
+    data$label <- label_vec
   }
+
   # split label or specify label length
   if (!is.null(label_split)) {
     data$label <- gsub(pattern = label_split, replacement = "\n", x = data$label)

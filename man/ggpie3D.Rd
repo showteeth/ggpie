@@ -16,7 +16,7 @@ ggpie3D(
   camera_eye = c(0, 3, 5),
   camera_look_at = c(0, 0, 0),
   show_label = TRUE,
-  label_info = c("count", "ratio", "all"),
+  label_info = "count",
   label_split = "[[:space:]]+",
   label_len = 40,
   label_size = 4
@@ -45,7 +45,8 @@ ggpie3D(
 
 \item{show_label}{Logical value, whether to show label or not. Default: TRUE.}
 
-\item{label_info}{Label information type, chosen from count, ratio and all (count and ratio). Default: count.}
+\item{label_info}{Label information type, combine from group, count, ratio.
+For example, use "count" , "ratio" will show count and ratio, count is main label info, ratio is in brackets. Default: count.}
 
 \item{label_split}{Pattern used to split the label, support regular expression. Default: space.}
 
@@ -66,8 +67,8 @@ data(diamonds)
 ggpie3D(data = diamonds, group_key = "cut", count_type = "full", tilt_degrees = -10)
 ggpie3D(
   data = mtcars, group_key = "cyl", count_type = "full",
-  tilt_degrees = -10, start_degrees = 0
+  tilt_degrees = -10, start_degrees = 0, label_info = c("count", "ratio")
 )
 data <- data.frame(group = letters[1:5], count = c(1, 2, 3, 1, 1), stringsAsFactors = FALSE)
-ggpie3D(data = data, start_degrees = 0, label_split = NULL)
+ggpie3D(data = data, start_degrees = 0, label_split = NULL, label_info = c("count", "ratio"))
 }

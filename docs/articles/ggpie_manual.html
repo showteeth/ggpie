@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggpie</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.5</span>
       </span>
     </div>
 
@@ -164,17 +164,17 @@
 <a href="#horizontal-label" class="anchor"></a>horizontal label</h3>
 <p>Create a pie plot with label <strong>in the pie</strong>:</p>
 <div class="sourceCode"><html><body><pre class="r"><span class="fu"><a href="../reference/ggpie.html">ggpie</a></span>(<span class="kw">data</span> <span class="kw">=</span> <span class="no">diamonds</span>, <span class="kw">group_key</span> <span class="kw">=</span> <span class="st">"cut"</span>, <span class="kw">count_type</span> <span class="kw">=</span> <span class="st">"full"</span>,
-      <span class="kw">label_info</span> <span class="kw">=</span> <span class="st">"all"</span>, <span class="kw">label_type</span> <span class="kw">=</span> <span class="st">"horizon"</span>, <span class="kw">label_split</span> <span class="kw">=</span> <span class="kw">NULL</span>,
+      <span class="kw">label_info</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"count"</span>, <span class="st">"ratio"</span>), <span class="kw">label_type</span> <span class="kw">=</span> <span class="st">"horizon"</span>, <span class="kw">label_split</span> <span class="kw">=</span> <span class="kw">NULL</span>,
       <span class="kw">label_size</span> <span class="kw">=</span> <span class="fl">4</span>, <span class="kw">label_pos</span> <span class="kw">=</span> <span class="st">"in"</span>)</pre></body></html></div>
 <p><img src="ggpie_manual_files/figure-html/pie_horizontal_label_in-1.png" width="700"></p>
 <p>Create a pie plot with label <strong>out of the pie</strong>:</p>
 <div class="sourceCode"><html><body><pre class="r"><span class="fu"><a href="../reference/ggpie.html">ggpie</a></span>(<span class="kw">data</span> <span class="kw">=</span> <span class="no">diamonds</span>, <span class="kw">group_key</span> <span class="kw">=</span> <span class="st">"cut"</span>, <span class="kw">count_type</span> <span class="kw">=</span> <span class="st">"full"</span>,
-      <span class="kw">label_info</span> <span class="kw">=</span> <span class="st">"all"</span>, <span class="kw">label_type</span> <span class="kw">=</span> <span class="st">"horizon"</span>,
+      <span class="kw">label_info</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"count"</span>, <span class="st">"ratio"</span>), <span class="kw">label_type</span> <span class="kw">=</span> <span class="st">"horizon"</span>,
       <span class="kw">label_size</span> <span class="kw">=</span> <span class="fl">4</span>, <span class="kw">label_pos</span> <span class="kw">=</span> <span class="st">"out"</span> )</pre></body></html></div>
 <p><img src="ggpie_manual_files/figure-html/pie_horizontal_label_out-1.png" width="700"></p>
 <p>Create a pie plot with <strong>mixture label</strong>:</p>
 <div class="sourceCode"><html><body><pre class="r"><span class="fu"><a href="../reference/ggpie.html">ggpie</a></span>(<span class="kw">data</span> <span class="kw">=</span> <span class="no">diamonds</span>, <span class="kw">group_key</span> <span class="kw">=</span> <span class="st">"cut"</span>, <span class="kw">count_type</span> <span class="kw">=</span> <span class="st">"full"</span>,
-      <span class="kw">label_info</span> <span class="kw">=</span> <span class="st">"all"</span>, <span class="kw">label_type</span> <span class="kw">=</span> <span class="st">"horizon"</span>, <span class="kw">label_split</span> <span class="kw">=</span> <span class="kw">NULL</span>,
+      <span class="kw">label_info</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"count"</span>, <span class="st">"ratio"</span>), <span class="kw">label_type</span> <span class="kw">=</span> <span class="st">"horizon"</span>, <span class="kw">label_split</span> <span class="kw">=</span> <span class="kw">NULL</span>,
       <span class="kw">label_size</span> <span class="kw">=</span> <span class="fl">4</span>, <span class="kw">label_pos</span> <span class="kw">=</span> <span class="st">"in"</span>, <span class="kw">label_threshold</span> <span class="kw">=</span> <span class="fl">10</span>)</pre></body></html></div>
 <p><img src="ggpie_manual_files/figure-html/pie_horizontal_label_mixture-1.png" width="700"></p>
 <hr>
@@ -184,12 +184,12 @@
 <a href="#circle-label" class="anchor"></a>circle label</h3>
 <p>Create a pie plot with label <strong>in the pie</strong>:</p>
 <div class="sourceCode"><html><body><pre class="r"><span class="fu"><a href="../reference/ggpie.html">ggpie</a></span>(<span class="kw">data</span> <span class="kw">=</span> <span class="no">diamonds</span>, <span class="kw">group_key</span> <span class="kw">=</span> <span class="st">"cut"</span>, <span class="kw">count_type</span> <span class="kw">=</span> <span class="st">"full"</span>,
-      <span class="kw">label_info</span> <span class="kw">=</span> <span class="st">"all"</span>, <span class="kw">label_type</span> <span class="kw">=</span> <span class="st">"circle"</span>, <span class="kw">label_split</span> <span class="kw">=</span> <span class="kw">NULL</span>,
+      <span class="kw">label_info</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"count"</span>, <span class="st">"ratio"</span>), <span class="kw">label_type</span> <span class="kw">=</span> <span class="st">"circle"</span>, <span class="kw">label_split</span> <span class="kw">=</span> <span class="kw">NULL</span>,
       <span class="kw">label_size</span> <span class="kw">=</span> <span class="fl">4</span>, <span class="kw">label_pos</span> <span class="kw">=</span> <span class="st">"in"</span>)</pre></body></html></div>
 <p><img src="ggpie_manual_files/figure-html/pie_circle_label_in-1.png" width="700"></p>
 <p>Create a pie plot with label <strong>out of the pie</strong>:</p>
 <div class="sourceCode"><html><body><pre class="r"><span class="fu"><a href="../reference/ggpie.html">ggpie</a></span>(<span class="kw">data</span> <span class="kw">=</span> <span class="no">diamonds</span>, <span class="kw">group_key</span> <span class="kw">=</span> <span class="st">"cut"</span>, <span class="kw">count_type</span> <span class="kw">=</span> <span class="st">"full"</span>,
-      <span class="kw">label_info</span> <span class="kw">=</span> <span class="st">"all"</span>, <span class="kw">label_type</span> <span class="kw">=</span> <span class="st">"circle"</span>,<span class="kw">label_split</span> <span class="kw">=</span> <span class="kw">NULL</span>,
+      <span class="kw">label_info</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"count"</span>, <span class="st">"ratio"</span>), <span class="kw">label_type</span> <span class="kw">=</span> <span class="st">"circle"</span>,<span class="kw">label_split</span> <span class="kw">=</span> <span class="kw">NULL</span>,
       <span class="kw">label_size</span> <span class="kw">=</span> <span class="fl">4</span>, <span class="kw">label_pos</span> <span class="kw">=</span> <span class="st">"out"</span>)</pre></body></html></div>
 <p><img src="ggpie_manual_files/figure-html/pie_circle_label_out-1.png" width="700"></p>
 <p>Please notice that, <mark>create a pie plot with circle label does not support mixture label</mark>.</p>
@@ -200,7 +200,7 @@
 <a href="#split-label" class="anchor"></a>split label</h3>
 <p>Besides adding <strong>horizontal</strong> and <strong>circle</strong> labels, <code>ggpie</code> also support split the label with regex. By default, ggpie will split the label by spaces (<code>[[:space:]]+</code>):</p>
 <div class="sourceCode"><html><body><pre class="r"><span class="fu"><a href="../reference/ggpie.html">ggpie</a></span>(<span class="kw">data</span> <span class="kw">=</span> <span class="no">diamonds</span>, <span class="kw">group_key</span> <span class="kw">=</span> <span class="st">"cut"</span>, <span class="kw">count_type</span> <span class="kw">=</span> <span class="st">"full"</span>,
-      <span class="kw">label_info</span> <span class="kw">=</span> <span class="st">"all"</span>, <span class="kw">label_type</span> <span class="kw">=</span> <span class="st">"horizon"</span>, <span class="kw">label_split</span> <span class="kw">=</span> <span class="st">"[[:space:]]+"</span>,
+      <span class="kw">label_info</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"count"</span>, <span class="st">"ratio"</span>), <span class="kw">label_type</span> <span class="kw">=</span> <span class="st">"horizon"</span>, <span class="kw">label_split</span> <span class="kw">=</span> <span class="st">"[[:space:]]+"</span>,
       <span class="kw">label_size</span> <span class="kw">=</span> <span class="fl">4</span>, <span class="kw">label_pos</span> <span class="kw">=</span> <span class="st">"out"</span> )</pre></body></html></div>
 <p><img src="ggpie_manual_files/figure-html/split_label-1.png" width="700"></p>
 <p>Please notice that, <mark>spliting the label is support by all available tools in <code>ggpie</code> (<code>ggpie</code>, <code>ggdonut</code>, <code>ggnestedpie</code>, <code>ggpie3D</code>, <code>ggrosepie</code>)</mark>.</p>
@@ -241,17 +241,17 @@
 <a href="#horizontal-label-1" class="anchor"></a>horizontal label</h3>
 <p>Create a donut plot with label <strong>in the pie</strong>:</p>
 <div class="sourceCode"><html><body><pre class="r"><span class="fu"><a href="../reference/ggdonut.html">ggdonut</a></span>(<span class="kw">data</span> <span class="kw">=</span> <span class="no">diamonds</span>, <span class="kw">group_key</span> <span class="kw">=</span> <span class="st">"cut"</span>, <span class="kw">count_type</span> <span class="kw">=</span> <span class="st">"full"</span>,
-        <span class="kw">label_info</span> <span class="kw">=</span> <span class="st">"all"</span>, <span class="kw">label_type</span> <span class="kw">=</span> <span class="st">"horizon"</span>, <span class="kw">label_split</span> <span class="kw">=</span> <span class="kw">NULL</span>,
+        <span class="kw">label_info</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"count"</span>, <span class="st">"ratio"</span>), <span class="kw">label_type</span> <span class="kw">=</span> <span class="st">"horizon"</span>, <span class="kw">label_split</span> <span class="kw">=</span> <span class="kw">NULL</span>,
         <span class="kw">label_size</span> <span class="kw">=</span> <span class="fl">4</span>, <span class="kw">label_pos</span> <span class="kw">=</span> <span class="st">"in"</span>)</pre></body></html></div>
 <p><img src="ggpie_manual_files/figure-html/donut_horizontal_label_in-1.png" width="700"></p>
 <p>Create a donut plot with label <strong>out of the pie</strong>:</p>
 <div class="sourceCode"><html><body><pre class="r"><span class="fu"><a href="../reference/ggdonut.html">ggdonut</a></span>(<span class="kw">data</span> <span class="kw">=</span> <span class="no">diamonds</span>, <span class="kw">group_key</span> <span class="kw">=</span> <span class="st">"cut"</span>, <span class="kw">count_type</span> <span class="kw">=</span> <span class="st">"full"</span>,
-        <span class="kw">label_info</span> <span class="kw">=</span> <span class="st">"all"</span>, <span class="kw">label_type</span> <span class="kw">=</span> <span class="st">"horizon"</span>, <span class="kw">label_split</span> <span class="kw">=</span> <span class="kw">NULL</span>,
+        <span class="kw">label_info</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"count"</span>, <span class="st">"ratio"</span>), <span class="kw">label_type</span> <span class="kw">=</span> <span class="st">"horizon"</span>, <span class="kw">label_split</span> <span class="kw">=</span> <span class="kw">NULL</span>,
         <span class="kw">label_size</span> <span class="kw">=</span> <span class="fl">4</span>, <span class="kw">label_pos</span> <span class="kw">=</span> <span class="st">"out"</span>)</pre></body></html></div>
 <p><img src="ggpie_manual_files/figure-html/donut_horizontal_label_out-1.png" width="700"></p>
 <p>Create a donut plot with <strong>mixture label</strong>:</p>
 <div class="sourceCode"><html><body><pre class="r"><span class="fu"><a href="../reference/ggdonut.html">ggdonut</a></span>(<span class="kw">data</span> <span class="kw">=</span> <span class="no">diamonds</span>, <span class="kw">group_key</span> <span class="kw">=</span> <span class="st">"cut"</span>, <span class="kw">count_type</span> <span class="kw">=</span> <span class="st">"full"</span>,
-        <span class="kw">label_info</span> <span class="kw">=</span> <span class="st">"all"</span>, <span class="kw">label_type</span> <span class="kw">=</span> <span class="st">"horizon"</span>,
+        <span class="kw">label_info</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"count"</span>, <span class="st">"ratio"</span>), <span class="kw">label_type</span> <span class="kw">=</span> <span class="st">"horizon"</span>,
         <span class="kw">label_size</span> <span class="kw">=</span> <span class="fl">4</span>, <span class="kw">label_pos</span> <span class="kw">=</span> <span class="st">"in"</span>, <span class="kw">label_threshold</span> <span class="kw">=</span> <span class="fl">10</span>)</pre></body></html></div>
 <p><img src="ggpie_manual_files/figure-html/donut_horizontal_label_mixture-1.png" width="700"></p>
 <hr>
@@ -261,12 +261,12 @@
 <a href="#circle-label-1" class="anchor"></a>circle label</h3>
 <p>Create a donut plot with label <strong>in the pie</strong>:</p>
 <div class="sourceCode"><html><body><pre class="r"><span class="fu"><a href="../reference/ggdonut.html">ggdonut</a></span>(<span class="kw">data</span> <span class="kw">=</span> <span class="no">diamonds</span>, <span class="kw">group_key</span> <span class="kw">=</span> <span class="st">"cut"</span>, <span class="kw">count_type</span> <span class="kw">=</span> <span class="st">"full"</span>,
-        <span class="kw">label_info</span> <span class="kw">=</span> <span class="st">"all"</span>, <span class="kw">label_type</span> <span class="kw">=</span> <span class="st">"circle"</span>, <span class="kw">label_split</span> <span class="kw">=</span> <span class="kw">NULL</span>,
+        <span class="kw">label_info</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"count"</span>, <span class="st">"ratio"</span>), <span class="kw">label_type</span> <span class="kw">=</span> <span class="st">"circle"</span>, <span class="kw">label_split</span> <span class="kw">=</span> <span class="kw">NULL</span>,
         <span class="kw">label_size</span> <span class="kw">=</span> <span class="fl">4</span>, <span class="kw">label_pos</span> <span class="kw">=</span> <span class="st">"in"</span>)</pre></body></html></div>
 <p><img src="ggpie_manual_files/figure-html/donut_circle_label_in-1.png" width="700"></p>
 <p>Create a donut plot with label <strong>out of the pie</strong>:</p>
 <div class="sourceCode"><html><body><pre class="r"><span class="fu"><a href="../reference/ggdonut.html">ggdonut</a></span>(<span class="kw">data</span> <span class="kw">=</span> <span class="no">diamonds</span>, <span class="kw">group_key</span> <span class="kw">=</span> <span class="st">"cut"</span>, <span class="kw">count_type</span> <span class="kw">=</span> <span class="st">"full"</span>,
-        <span class="kw">label_info</span> <span class="kw">=</span> <span class="st">"all"</span>, <span class="kw">label_type</span> <span class="kw">=</span> <span class="st">"circle"</span>,
+        <span class="kw">label_info</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"count"</span>, <span class="st">"ratio"</span>), <span class="kw">label_type</span> <span class="kw">=</span> <span class="st">"circle"</span>,
         <span class="kw">label_size</span> <span class="kw">=</span> <span class="fl">4</span>, <span class="kw">label_pos</span> <span class="kw">=</span> <span class="st">"out"</span>)</pre></body></html></div>
 <p><img src="ggpie_manual_files/figure-html/donut_circle_label_out-1.png" width="700"></p>
 <hr>

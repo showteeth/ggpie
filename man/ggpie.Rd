@@ -9,7 +9,7 @@ ggpie(
   group_key = NULL,
   count_type = c("count", "full"),
   fill_color = NULL,
-  label_info = c("count", "ratio", "all"),
+  label_info = "count",
   label_split = "[[:space:]]+",
   label_len = 40,
   label_color = "black",
@@ -33,7 +33,8 @@ ggpie(
 
 \item{fill_color}{Colors used. Default: NULL (conduct automatic selection).}
 
-\item{label_info}{Label information type, chosen from count, ratio and all (count and ratio). Default: count.}
+\item{label_info}{Label information type, combine from group, count, ratio.
+For example, use "count" , "ratio" will show count and ratio, count is main label info, ratio is in brackets. Default: count.}
 
 \item{label_split}{Pattern used to split the label, support regular expression. Default: space.}
 
@@ -72,42 +73,42 @@ data(diamonds)
 # with no label
 ggpie(
   data = diamonds, group_key = "cut", count_type = "full",
-  label_info = "all", label_type = "none"
+  label_info = c("count", "ratio"), label_type = "none"
 )
 # circle label and out of pie
 ggpie(
   data = diamonds, group_key = "cut", count_type = "full",
-  label_info = "all", label_type = "circle",
+  label_info = c("count", "ratio"), label_type = "circle",
   label_size = 4, label_pos = "out"
 )
 # circle label and in pie plot, with no split
 ggpie(
   data = diamonds, group_key = "cut", count_type = "full",
-  label_info = "all", label_type = "circle", label_split = NULL,
+  label_info = c("count", "ratio"), label_type = "circle", label_split = NULL,
   label_size = 4, label_pos = "in"
 )
 # horizon label and in pie plot, with no split
 ggpie(
   data = diamonds, group_key = "cut", count_type = "full",
-  label_info = "all", label_type = "horizon", label_split = NULL,
+  label_info = c("count", "ratio"), label_type = "horizon", label_split = NULL,
   label_size = 4, label_pos = "in"
 )
 # horizon label and in pie plot, split with space
 ggpie(
   data = diamonds, group_key = "cut", count_type = "full",
-  label_info = "all", label_type = "horizon",
+  label_info = c("count", "ratio"), label_type = "horizon",
   label_size = 4, label_pos = "in"
 )
 # horizon label and out pie plot, with no split
 ggpie(
   data = diamonds, group_key = "cut", count_type = "full",
-  label_info = "all", label_type = "horizon", label_split = NULL,
+  label_info = c("count", "ratio"), label_type = "horizon", label_split = NULL,
   label_size = 4, label_pos = "out"
 )
 # with label threshold
 ggpie(
   data = diamonds, group_key = "cut", count_type = "full",
-  label_info = "all", label_type = "horizon", label_split = NULL,
+  label_info = c("count", "ratio"), label_type = "horizon", label_split = NULL,
   label_size = 4, label_pos = "in", label_threshold = 10
 )
 }

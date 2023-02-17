@@ -57,21 +57,21 @@ library(ggpie)
 Create a pie plot with label **in the pie**:
 ```{r pie_horizontal_label_in}
 ggpie(data = diamonds, group_key = "cut", count_type = "full",
-      label_info = "all", label_type = "horizon", label_split = NULL,
+      label_info = c("count", "ratio"), label_type = "horizon", label_split = NULL,
       label_size = 4, label_pos = "in")
 ```
 
 Create a pie plot with label **out of the pie**:
 ```{r pie_horizontal_label_out}
 ggpie(data = diamonds, group_key = "cut", count_type = "full",
-      label_info = "all", label_type = "horizon",
+      label_info = c("count", "ratio"), label_type = "horizon",
       label_size = 4, label_pos = "out" )
 ```
 
 Create a pie plot with **mixture label**:
 ```{r pie_horizontal_label_mixture}
 ggpie(data = diamonds, group_key = "cut", count_type = "full",
-      label_info = "all", label_type = "horizon", label_split = NULL,
+      label_info = c("count", "ratio"), label_type = "horizon", label_split = NULL,
       label_size = 4, label_pos = "in", label_threshold = 10)
 ```
 
@@ -81,14 +81,14 @@ ggpie(data = diamonds, group_key = "cut", count_type = "full",
 Create a pie plot with label **in the pie**:
 ```{r pie_circle_label_in}
 ggpie(data = diamonds, group_key = "cut", count_type = "full",
-      label_info = "all", label_type = "circle", label_split = NULL,
+      label_info = c("count", "ratio"), label_type = "circle", label_split = NULL,
       label_size = 4, label_pos = "in")
 ```
 
 Create a pie plot with label **out of the pie**:
 ```{r pie_circle_label_out}
 ggpie(data = diamonds, group_key = "cut", count_type = "full",
-      label_info = "all", label_type = "circle",label_split = NULL,
+      label_info = c("count", "ratio"), label_type = "circle",label_split = NULL,
       label_size = 4, label_pos = "out")
 ```
 
@@ -100,7 +100,7 @@ Please notice that, <mark>create a pie plot with circle label does not support m
 Besides adding **horizontal** and **circle** labels, `ggpie` also support split the label with regex. By default, ggpie will split the label by spaces (`[[:space:]]+`):
 ```{r split_label}
 ggpie(data = diamonds, group_key = "cut", count_type = "full",
-      label_info = "all", label_type = "horizon", label_split = "[[:space:]]+",
+      label_info = c("count", "ratio"), label_type = "horizon", label_split = "[[:space:]]+",
       label_size = 4, label_pos = "out" )
 ```
 
@@ -139,21 +139,21 @@ cowplot::plot_grid(p1,p2,p3,p4,ncol = 2)
 Create a donut plot with label **in the pie**:
 ```{r donut_horizontal_label_in}
 ggdonut(data = diamonds, group_key = "cut", count_type = "full",
-        label_info = "all", label_type = "horizon", label_split = NULL,
+        label_info = c("count", "ratio"), label_type = "horizon", label_split = NULL,
         label_size = 4, label_pos = "in")
 ```
 
 Create a donut plot with label **out of the pie**:
 ```{r donut_horizontal_label_out}
 ggdonut(data = diamonds, group_key = "cut", count_type = "full",
-        label_info = "all", label_type = "horizon", label_split = NULL,
+        label_info = c("count", "ratio"), label_type = "horizon", label_split = NULL,
         label_size = 4, label_pos = "out")
 ```
 
 Create a donut plot with **mixture label**:
 ```{r donut_horizontal_label_mixture}
 ggdonut(data = diamonds, group_key = "cut", count_type = "full",
-        label_info = "all", label_type = "horizon",
+        label_info = c("count", "ratio"), label_type = "horizon",
         label_size = 4, label_pos = "in", label_threshold = 10)
 ```
 
@@ -163,14 +163,14 @@ ggdonut(data = diamonds, group_key = "cut", count_type = "full",
 Create a donut plot with label **in the pie**:
 ```{r donut_circle_label_in}
 ggdonut(data = diamonds, group_key = "cut", count_type = "full",
-        label_info = "all", label_type = "circle", label_split = NULL,
+        label_info = c("count", "ratio"), label_type = "circle", label_split = NULL,
         label_size = 4, label_pos = "in")
 ```
 
 Create a donut plot with label **out of the pie**:
 ```{r donut_circle_label_out}
 ggdonut(data = diamonds, group_key = "cut", count_type = "full",
-        label_info = "all", label_type = "circle",
+        label_info = c("count", "ratio"), label_type = "circle",
         label_size = 4, label_pos = "out")
 ```
 

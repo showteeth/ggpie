@@ -1,3 +1,9 @@
+# ggpie 0.2.5
+* Changed label info style to support legend (`ggnestedpie` and `ggrosepie` don't support this). (Fix #4)
+* Fixed bugs in `ggpie3D`.
+
+-----------
+
 # ggpie 0.2.4
 * Added `label_len` to adjust the length of labels (Fix #2).
 * Corrected some spelling mistakes

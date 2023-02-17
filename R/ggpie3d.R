@@ -60,7 +60,8 @@ adapt2polygon <- function(data, fill_color = NULL, start_degrees = 0, tilt_degre
 #' @param camera_eye location of camera eye. Default: c(0, 3, 5).
 #' @param camera_look_at at what point is the camera looking. Default: c(0, 0, 0).
 #' @param show_label Logical value, whether to show label or not. Default: TRUE.
-#' @param label_info Label information type, chosen from count, ratio and all (count and ratio). Default: count.
+#' @param label_info Label information type, combine from group, count, ratio.
+#' For example, use "count" , "ratio" will show count and ratio, count is main label info, ratio is in brackets. Default: count.
 #' @param label_split Pattern used to split the label, support regular expression. Default: space.
 #' @param label_len The length of label text. Used when \code{label_split} is NULL. Default: 40.
 #' @param label_size Size of the label. Default: 4.
@@ -86,13 +87,13 @@ adapt2polygon <- function(data, fill_color = NULL, start_degrees = 0, tilt_degre
 #' ggpie3D(data = diamonds, group_key = "cut", count_type = "full", tilt_degrees = -10)
 #' ggpie3D(
 #'   data = mtcars, group_key = "cyl", count_type = "full",
-#'   tilt_degrees = -10, start_degrees = 0
+#'   tilt_degrees = -10, start_degrees = 0, label_info = c("count", "ratio")
 #' )
 #' data <- data.frame(group = letters[1:5], count = c(1, 2, 3, 1, 1), stringsAsFactors = FALSE)
-#' ggpie3D(data = data, start_degrees = 0, label_split = NULL)
+#' ggpie3D(data = data, start_degrees = 0, label_split = NULL, label_info = c("count", "ratio"))
 ggpie3D <- function(data, group_key = NULL, count_type = c("count", "full"), fill_color = NULL, start_degrees = 0, tilt_degrees = -20,
                     height = 0.1, darken = 0.15, camera_eye = c(0, 3, 5), camera_look_at = c(0, 0, 0), show_label = TRUE,
-                    label_info = c("count", "ratio", "all"), label_split = "[[:space:]]+", label_len = 40, label_size = 4) {
+                    label_info = "count", label_split = "[[:space:]]+", label_len = 40, label_size = 4) {
   # check parameters
   count_type <- match.arg(arg = count_type)
 
@@ -125,13 +126,23 @@ ggpie3D <- function(data, group_key = NULL, count_type = c("count", "full"), fil
   pie_data <- plot_data %>% dplyr::filter(element_type != 4)
   label_group <- unique(as.character(pie_data$group))
   # prepare label
-  label_info <- "all"
-  if (label_info == "count") {
-    data$label <- as.character(data$count)
-  } else if (label_info == "ratio") {
-    data$label <- as.character(scales::percent(data$count / sum(data$count)))
-  } else if (label_info == "all") {
-    data$label <- paste0(data$count, " (", scales::percent(data$count / sum(data$count)), ")")
+  valid_label_info <- intersect(c("group", "count", "ratio"), label_info)
+  if (length(valid_label_info) < 1) {
+    stop("Please provide valid label_info, choose from 'group', 'count', 'ratio'.")
+  } else {
+    label_list <- list(
+      count = as.character(data$count),
+      ratio = as.character(scales::percent(data$count / sum(data$count))),
+      group = as.character(data$group)
+    )
+    if (length(valid_label_info) == 1) {
+      label_vec <- label_list[[valid_label_info]]
+    } else if (length(valid_label_info) == 2) {
+      label_vec <- paste0(label_list[[valid_label_info[1]]], " (", label_list[[valid_label_info[2]]], ")")
+    } else if (length(valid_label_info) == 3) {
+      label_vec <- paste0(label_list[[valid_label_info[1]]], " (", paste(label_list[[valid_label_info[2]]], label_list[[valid_label_info[3]]], sep = " ,"), ")")
+    }
+    data$label <- label_vec
   }
   # split label or specify label length
   if (!is.null(label_split)) {

@@ -181,6 +181,22 @@ ggnestedpie <- function(data, group_key = NULL, count_type = c("count", "full"),
     } else if (inner_label_info == "all") {
       sub_data$label <- paste0(sub_data$count, " (", scales::percent(sub_data$count / sum(sub_data$count)), ")")
     }
+    # valid_inner_label_info=intersect(c("group", "count", "ratio"), inner_label_info)
+    # if(length(valid_inner_label_info)<1){
+    #   stop("Please provide valid inner_label_info, choose from 'group', 'count', 'ratio'.")
+    # }else{
+    #   inner_label_list = list(count = as.character(sub_data$count),
+    #                     ratio = as.character(scales::percent(sub_data$count / sum(sub_data$count))),
+    #                     group = as.character(sub_data$group))
+    #   if(length(valid_inner_label_info)==1){
+    #     inner_label_vec = inner_label_list[[valid_inner_label_info]]
+    #   }else if(length(valid_inner_label_info)==2){
+    #     inner_label_vec = paste0(inner_label_list[[valid_inner_label_info[1]]], " (", inner_label_list[[valid_inner_label_info[2]]], ")")
+    #   }else if(length(valid_inner_label_info)==3){
+    #     inner_label_vec = paste0(inner_label_list[[valid_inner_label_info[1]]], " (", paste(inner_label_list[[valid_inner_label_info[2]]], inner_label_list[[valid_inner_label_info[3]]], sep = " ,"), ")")
+    #   }
+    #   sub_data$label <- inner_label_vec
+    # }
     # split label or specify label length
     if (!is.null(inner_label_split)) {
       sub_data$label <- gsub(pattern = inner_label_split, replacement = "\n", x = sub_data$label)
