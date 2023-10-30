@@ -139,7 +139,7 @@ ggpie <- function(data, group_key = NULL, count_type = c("count", "full"), fill_
           data = data,
           aes(label = label, y = CumFreq, x = after_stat(1.5), colour = group), show.legend = FALSE,
           point.padding = NA, max.overlaps = Inf, nudge_x = nudge_x, nudge_y = nudge_y,
-          segment.curvature = -0.2, segment.ncp = 10, segment.angle = 20
+          segment.curvature = -0.2, segment.ncp = 10, segment.angle = 20, size = label_size
         ) +
         coord_polar(theta = "y", start = 0, clip = "off") +
         theme_void() +
