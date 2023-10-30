@@ -40,7 +40,7 @@ PrepareData <- function(data, group_key = NULL, count_type = c("count", "full"),
   } else {
     label_list <- list(
       count = as.character(data$count),
-      ratio = as.character(scales::percent(data$count / sum(data$count))),
+      ratio = as.character(scales::percent(data$count / sum(data$count), accuracy = 0.01)),
       group = as.character(data$group)
     )
     if (length(valid_label_info) == 1) {
